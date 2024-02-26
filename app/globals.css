@@ -76,3 +76,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+html,
+body {
+  background: hsl(var(--primary))
+}

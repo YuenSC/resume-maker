@@ -11,7 +11,7 @@ const EditorDisplay = () => {
   return (
     <div
       ref={editorRef}
-      className="aspect-[210/297] w-[700px] self-center bg-white p-4"
+      className="mt-20 aspect-[210/297] w-[800px] self-center bg-white p-4"
     >
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis
       deserunt quos corrupti eius itaque assumenda labore molestias, voluptatem
