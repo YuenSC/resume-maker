@@ -7,7 +7,9 @@ export default function Home() {
     <main>
       <EditorContainer className="flex w-full flex-col gap-4">
         <EditorNavBar />
-        <EditorDisplay />
+        <div className="mt-20 self-center">
+          <EditorDisplay />
+        </div>
       </EditorContainer>
     </main>
   );

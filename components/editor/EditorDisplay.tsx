@@ -1,8 +1,6 @@
 "use client";
 
-import { memo, useRef } from "react";
-import { useReactToPrint } from "react-to-print";
-import { Button } from "../ui/button";
+import { memo } from "react";
 import { useEditor } from "./editorContext";
 
 const EditorDisplay = () => {
@@ -11,12 +9,9 @@ const EditorDisplay = () => {
   return (
     <div
       ref={editorRef}
-      className="mt-20 aspect-[210/297] w-[800px] self-center bg-white p-4"
+      className="aspect-[210/297] w-[900px] self-center bg-white p-4"
     >
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis
-      deserunt quos corrupti eius itaque assumenda labore molestias, voluptatem
-      voluptatum quod provident animi fugit aliquam earum at impedit optio aut?
-      Culpa.
+      Lorem ipsum dolor sit amet consectetur adipi
     </div>
   );
 };

@@ -12,7 +12,7 @@ type EditorContainerProps = {
 const EditorContainer = ({ children, className }: EditorContainerProps) => {
   return (
     <EditorProvider>
-      <div className="fixed top-0 h-[50vh] w-full bg-gradient-to-b from-[#ffffff55] to-primary"></div>
+      <div className="fixed top-0 h-[50vh] w-full bg-gradient-to-b from-white/50 to-primary"></div>
       <div className={cn("relative h-full p-4", className)}>{children}</div>
     </EditorProvider>
   );
