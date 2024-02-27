@@ -1,3 +1,5 @@
+import { EditorResume } from "@/types/editor/EditorResume";
+import { EditorSection } from "@/types/editor/EditorSection";
 import {
   Dispatch,
   MutableRefObject,
@@ -5,12 +7,13 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useMemo,
   useRef,
   useState,
 } from "react";
 import { useReactToPrint } from "react-to-print";
 
-const defaultSection: Section = {
+const defaultSection: EditorSection = {
   personalDetails: {
     location: true,
     phone: true,
@@ -18,7 +21,7 @@ const defaultSection: Section = {
     website: true,
     linkedin: true,
   },
-  picture: true,
+  photo: true,
   aboutMe: true,
   role: true,
   workExperience: true,
@@ -28,53 +31,58 @@ const defaultSection: Section = {
   hobbies: false,
 };
 
-type Section = {
+const defaultResume: EditorResume = {
+  photo: "",
+  name: "",
+  role: "",
+  aboutMe: {
+    title: "About Me",
+    value: "",
+  },
   personalDetails: {
-    location: boolean;
-    phone: boolean;
-    email: boolean;
-    website: boolean;
-    linkedin: boolean;
-  };
-  picture: boolean;
-  aboutMe: boolean;
-  role: boolean;
-  workExperience: boolean;
-  education: boolean;
-  skills: boolean;
-  languages: boolean;
-  hobbies: boolean;
+    title: "Personal Details",
+    location: "",
+    phone: "",
+    email: "",
+    website: "",
+    linkedin: "",
+  },
 };
+
 type IEditorContext = {
   editorRef?: MutableRefObject<HTMLDivElement | null>;
   handlePrint?: () => void;
-  section: Section;
-  setSection: Dispatch<SetStateAction<Section>>;
+  section: EditorSection;
+  setSection: Dispatch<SetStateAction<EditorSection>>;
+  resume: EditorResume;
+  setResume: Dispatch<SetStateAction<EditorResume>>;
 };
 
 const editorContext = createContext<IEditorContext>({
   section: defaultSection,
   setSection: () => undefined,
+  resume: defaultResume,
+  setResume: () => undefined,
 });
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
+  const [section, setSection] = useState(defaultSection);
+  const [resume, setResume] = useState(defaultResume);
+
   const editorRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
     content: () => editorRef.current,
+    documentTitle: `${resume.name}_Resume`,
+    onBeforeGetContent: () => {},
   });
-  const [section, setSection] = useState(defaultSection);
+
+  const value = useMemo(
+    () => ({ editorRef, handlePrint, section, setSection, resume, setResume }),
+    [handlePrint, resume, section],
+  );
 
   return (
-    <editorContext.Provider
-      value={{
-        editorRef,
-        handlePrint,
-        section,
-        setSection,
-      }}
-    >
-      {children}
-    </editorContext.Provider>
+    <editorContext.Provider value={value}>{children}</editorContext.Provider>
   );
 };
 

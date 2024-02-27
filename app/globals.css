@@ -82,3 +82,9 @@ html,
 body {
   background: hsl(var(--primary))
 }
+
+@media print {
+  @page {
+    size: 210mm 297mm;
+  }
+}

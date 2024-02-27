@@ -1,7 +1,11 @@
 "use client";
 
 import { memo } from "react";
+import PhotoUpload from "./components/PhotoUpload";
 import { useEditor } from "./editorContext";
+import NameInput from "./components/NameInput";
+import AboutMe from "./components/AboutMe";
+import PersonalDetail from "./components/PersonalDetail";
 
 const EditorDisplay = () => {
   const { editorRef } = useEditor();
@@ -9,9 +13,25 @@ const EditorDisplay = () => {
   return (
     <div
       ref={editorRef}
-      className="aspect-[210/297] w-[900px] self-center bg-white p-4"
+      className="grid aspect-[210/297] w-[1000px] gap-8  self-center bg-white p-12 print:w-[900px]"
+      style={{
+        gridTemplateColumns: "225px 1fr",
+        gridTemplateRows: "225px 1fr",
+      }}
     >
-      Lorem ipsum dolor sit amet consectetur adipi
+      <PhotoUpload />
+      <div className="flex items-center">
+        <NameInput />
+      </div>
+
+      <div className="flex flex-col gap-4">
+        <AboutMe />
+        <PersonalDetail />
+      </div>
+
+      <div>
+        <div>Experience</div>
+      </div>
     </div>
   );
 };
