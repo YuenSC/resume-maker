@@ -1,6 +1,6 @@
 import DottedLineBox from "@/components/DottedLineBox";
 import { Input } from "@/components/ui/input";
-import { EditorPersonalDetailEnum } from "@/types/editor/EditorPersonalDetailEnum";
+import { EditorPersonalDetailEnum } from "@/lib/types/editor/EditorPersonalDetailEnum";
 import { memo, useMemo } from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaLinkedin, FaLocationDot } from "react-icons/fa6";
@@ -58,7 +58,7 @@ const IconInput = ({
   }, [personalDetailKey, value]);
 
   return (
-    <div className="flex  gap-2">
+    <div className="flex gap-2">
       <div className="flex h-[36px] items-center">
         <Icon size={18} className="text-primary" />
       </div>
@@ -102,10 +102,7 @@ const PersonalDetail = () => {
           }))
         }
       />
-      <div
-        className="ml-2 flex flex-col gap-1
-      "
-      >
+      <div className="ml-2 flex flex-col gap-1">
         {Object.keys(EditorPersonalDetailEnum).map((key) => {
           return (
             <IconInput

@@ -1,5 +1,6 @@
-import { EditorResume } from "@/types/editor/EditorResume";
-import { EditorSection } from "@/types/editor/EditorSection";
+import { EditorResume } from "@/lib/types/editor/EditorResume";
+import { EditorSection } from "@/lib/types/editor/EditorSection";
+import { generateRandomId } from "@/lib/utils";
 import {
   Dispatch,
   MutableRefObject,
@@ -46,6 +47,25 @@ const defaultResume: EditorResume = {
     email: "",
     website: "",
     linkedin: "",
+  },
+  workExperiences: {
+    title: "",
+    records: [
+      {
+        id: generateRandomId(),
+        description: "",
+        duration: "",
+        position: "",
+        title: "",
+      },
+      {
+        id: generateRandomId(),
+        description: "",
+        duration: "",
+        position: "",
+        title: "",
+      },
+    ],
   },
 };
 
