@@ -60,7 +60,7 @@ const Experience = ({
       key={index}
       ref={setNodeRef}
       className={cn(
-        "group relative flex flex-col gap-1 bg-white pl-8",
+        "group relative flex cursor-auto flex-col gap-1 bg-white pl-8",
         isActive && "z-20 shadow-xl",
       )}
       style={{
