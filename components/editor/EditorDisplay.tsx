@@ -7,6 +7,7 @@ import NameInput from "./components/NameInput";
 import PersonalDetail from "./components/PersonalDetail";
 import PhotoUpload from "./components/PhotoUpload";
 import { useEditor } from "./editorContext";
+import EducationReorderedList from "./components/EducationReorderedList";
 
 const EditorDisplay = () => {
   const { editorRef } = useEditor();
@@ -31,7 +32,10 @@ const EditorDisplay = () => {
       </div>
 
       <div>
-        <ExperienceReorderedList />
+        <div className="mb-8">
+          <ExperienceReorderedList />
+        </div>
+        <EducationReorderedList />
       </div>
     </div>
   );

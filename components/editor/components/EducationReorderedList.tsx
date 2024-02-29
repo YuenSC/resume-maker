@@ -13,15 +13,15 @@ import {
 } from "react-hook-form";
 import { useEditor } from "../editorContext";
 
-const ExperienceReorderedList = () => {
+const EducationReorderedList = () => {
   const {
-    resume: { workExperiences },
+    resume: { education },
     setResume,
     section,
   } = useEditor();
 
-  const form = useForm<EditorResume["workExperiences"]>({
-    defaultValues: workExperiences,
+  const form = useForm<EditorResume["education"]>({
+    defaultValues: education,
   });
   const { register, control, setValue } = form;
   const { fields, append, remove } = useFieldArray({
@@ -33,7 +33,7 @@ const ExperienceReorderedList = () => {
 
   return (
     <FormProvider {...form}>
-      <Input placeholder="Experience" isTitle {...register("title")} />
+      <Input placeholder="EDUCATION" isTitle {...register("title")} />
       <ReorderedList
         items={fields}
         onReorder={(items) => setValue("records", items)}
@@ -45,7 +45,7 @@ const ExperienceReorderedList = () => {
               <div className="absolute left-3 top-2.5 flex h-full flex-col items-center">
                 <div className="z-20 h-2.5 w-2.5 rounded-full bg-primary" />
                 {!isActive && !isLast && (
-                  <div className="z-10 h-[105%] w-0.5 scale-y-105 bg-gray-200" />
+                  <div className="absolute top-2 z-10 h-[100%] w-0.5 scale-y-105 bg-gray-200" />
                 )}
               </div>
               <ReorderListControl
@@ -55,10 +55,9 @@ const ExperienceReorderedList = () => {
                 onAppend={() =>
                   append({
                     id: generateRandomId(),
-                    description: "",
+                    school: "",
                     duration: "",
-                    position: "",
-                    title: "",
+                    degree: "",
                   })
                 }
                 reorderListeners={listeners}
@@ -66,43 +65,25 @@ const ExperienceReorderedList = () => {
 
               <Input
                 autoFocus
-                placeholder="Employer"
+                placeholder="School"
                 isTitle
                 className="text-primary placeholder:text-primary"
-                {...register(`records.${index}.title`)}
+                {...register(`records.${index}.school`)}
               />
               <div className="flex">
                 <Input
-                  placeholder="POSITION"
+                  placeholder="DEGREE"
                   className="font-medium"
                   isTitle
-                  {...register(`records.${index}.position`)}
+                  {...register(`records.${index}.degree`)}
                 />
-                <Controller
-                  name={`records.${index}.duration`}
-                  render={({ field }) => (
-                    <Input
-                      contentEditable
-                      className="flex w-fit font-light"
-                      placeholder="From - Until"
-                      {...field}
-                    />
-                  )}
+                <Input
+                  placeholder="From - Until"
+                  isTitle
+                  className="flex w-fit font-light"
+                  {...register(`records.${index}.duration`)}
                 />
               </div>
-              <Controller
-                name={`records.${index}.description`}
-                control={control}
-                render={({ field }) => {
-                  return (
-                    <Textarea
-                      {...field}
-                      className="h-6 py-0 text-base"
-                      placeholder="Enter your work experience description"
-                    />
-                  );
-                }}
-              />
             </>
           );
         }}
@@ -111,4 +92,4 @@ const ExperienceReorderedList = () => {
   );
 };
 
-export default memo(ExperienceReorderedList);
+export default memo(EducationReorderedList);

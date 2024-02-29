@@ -8,6 +8,13 @@ type WorkExperienceRecord = {
   description: string;
 };
 
+type EducationRecord = {
+  id: string;
+  school: string;
+  degree: string;
+  duration: string;
+};
+
 export type EditorResume = {
   photo: string;
   name: string;
@@ -23,5 +30,10 @@ export type EditorResume = {
   workExperiences: {
     title: string;
     records: Array<WorkExperienceRecord>;
+  };
+
+  education: {
+    title: string;
+    records: Array<EducationRecord>;
   };
 };
