@@ -5,21 +5,44 @@ import { cn } from "@/lib/utils";
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   isTitle?: boolean;
+  autoWidth?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, isTitle, ...props }, ref) => {
+  (
+    { className, type, isTitle, autoWidth, value, placeholder, ...props },
+    outerRef,
+  ) => {
+    const innerRef = React.useRef<React.ElementRef<"input">>(null);
+    React.useImperativeHandle(outerRef, () => innerRef.current!, []);
+
+    // React.useEffect(() => {
+    //   if (autoWidth && innerRef.current && typeof value === "string") {
+    //     console.log("value.length", value.length);
+    //     innerRef.current.style.width = (value.length || 9) + "ch";s
+    //   }
+    // }, [autoWidth, value]);
+
     return (
-      <input
-        type={type}
+      <span
+        aria-placeholder={placeholder}
+        contentEditable
         className={cn(
-          "text-md flex w-full rounded-sm bg-background px-2 text-black ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-black hover:bg-gray-200 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+          "flex w-full items-center whitespace-nowrap rounded-sm bg-background px-1.5 text-base text-black ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-black hover:bg-gray-200 focus:bg-gray-200 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+          `before:cursor-text before:content-none empty:before:content-[attr(aria-placeholder)]`,
           isTitle && "font-semibold text-black placeholder:text-black",
           className,
         )}
-        ref={ref}
+        ref={innerRef}
         {...props}
-      />
+        onChange={() => {
+          if (innerRef.current && !innerRef.current.innerHTML) {
+            innerRef.current.innerHTML = placeholder || "";
+          }
+        }}
+      >
+        {value}
+      </span>
     );
   },
 );

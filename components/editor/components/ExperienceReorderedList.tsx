@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { useEditor } from "../editorContext";
 import DottedLineBox from "@/components/DottedLineBox";
 import {
@@ -32,6 +32,12 @@ const ExperienceReorderedList = () => {
     name: "records",
   });
 
+  // useEffect(() => {
+  //   window.addEventListener("blur", () => {
+  //     console.log("blur");
+  //   });
+  // }, []);
+
   if (!section.workExperience) return null;
 
   return (
@@ -53,6 +59,20 @@ const ExperienceReorderedList = () => {
               <Button
                 size="icon"
                 variant="secondary"
+                className="text-white"
+                disabled={fields.length === 1}
+                onClick={() => remove(index)}
+              >
+                <FiMinus size={16} />
+              </Button>
+              <Button size="icon" variant="secondary" className="text-white">
+                <IoSwapVertical size={16} />
+              </Button>
+
+              <Button
+                size="icon"
+                variant="secondary"
+                className="text-white"
                 onClick={() =>
                   append({
                     id: generateRandomId(),
@@ -64,17 +84,6 @@ const ExperienceReorderedList = () => {
                 }
               >
                 <IoMdAdd size={16} />
-              </Button>
-              <Button
-                size="icon"
-                variant="secondary"
-                disabled={fields.length === 1}
-                onClick={() => remove(index)}
-              >
-                <FiMinus size={16} />
-              </Button>
-              <Button size="icon" variant="secondary">
-                <IoSwapVertical size={16} />
               </Button>
             </div>
 
@@ -90,13 +99,19 @@ const ExperienceReorderedList = () => {
               <Input
                 placeholder="POSITION"
                 isTitle
-                className="flex-[4]"
                 {...register(`records.${index}.position`)}
               />
-              <Input
-                className="flex-[1] font-light"
-                placeholder="From - Until"
-                {...register(`records.${index}.duration`)}
+              <Controller
+                name={`records.${index}.duration`}
+                render={({ field }) => (
+                  <Input
+                    contentEditable
+                    className="flex w-fit p-0 font-light"
+                    placeholder="From - Until"
+                    {...field}
+                    // {...register(`records.${index}.duration`)}
+                  />
+                )}
               />
             </div>
 
@@ -107,7 +122,7 @@ const ExperienceReorderedList = () => {
                 return (
                   <Textarea
                     {...field}
-                    className="h-9"
+                    className="h-6 py-0 text-base"
                     placeholder="Enter your work experience description"
                   />
                 );
