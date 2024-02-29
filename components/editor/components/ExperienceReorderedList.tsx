@@ -38,7 +38,8 @@ const Experience = ({
   onAppend,
   index,
   isLast,
-  isRemoveItemDisabled,
+  canRemove,
+  canReorder,
   id,
   isActive,
 }: {
@@ -46,7 +47,8 @@ const Experience = ({
   onAppend: () => void;
   index: number;
   isLast: boolean;
-  isRemoveItemDisabled: boolean;
+  canRemove: boolean;
+  canReorder: boolean;
   id: string;
   isActive?: boolean;
 }) => {
@@ -55,6 +57,10 @@ const Experience = ({
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
+  console.log({
+    id,
+    transform: CSS.Transform.toString(transform),
+  });
   return (
     <DottedLineBox
       key={index}
@@ -76,24 +82,26 @@ const Experience = ({
         )}
       </div>
       <div className="absolute right-0 top-0 mr-2 hidden -translate-y-1/2 group-hover:flex group-hover:gap-2">
-        <Button
-          size="icon"
-          variant="secondary"
-          className="text-white"
-          disabled={isRemoveItemDisabled}
-          onClick={onRemove}
-        >
-          <FiMinus size={16} />
-        </Button>
-        <Button
-          size="icon"
-          variant="secondary"
-          className="text-white"
-          {...listeners}
-        >
-          <IoSwapVertical size={16} />
-        </Button>
-
+        {canRemove && (
+          <Button
+            size="icon"
+            variant="secondary"
+            className="text-white"
+            onClick={onRemove}
+          >
+            <FiMinus size={16} />
+          </Button>
+        )}
+        {canReorder && (
+          <Button
+            size="icon"
+            variant="secondary"
+            className="text-white"
+            {...listeners}
+          >
+            <IoSwapVertical size={16} />
+          </Button>
+        )}
         <Button
           size="icon"
           variant="secondary"
@@ -182,6 +190,8 @@ const ExperienceReorderedList = () => {
       collisionDetection={closestCenter}
       onDragStart={(event) => setActiveId(event.active.id as string)}
       onDragEnd={(event) => {
+        console.log("onDragEnd");
+        setActiveId("");
         const { active, over } = event;
         if (over && active.id !== over.id) {
           const oldIndex = fields.findIndex((item) => item.id === active.id);
@@ -200,7 +210,8 @@ const ExperienceReorderedList = () => {
                 key={record.id}
                 index={index}
                 isActive={record.id === activeId}
-                isRemoveItemDisabled={fields.length <= 1}
+                canRemove={fields.length > 1}
+                canReorder={fields.length > 1}
                 isLast={index !== fields.length - 1}
                 onRemove={() => remove(index)}
                 onAppend={() =>
