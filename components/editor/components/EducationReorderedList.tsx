@@ -24,7 +24,7 @@ const EducationReorderedList = () => {
     defaultValues: education,
   });
   const { register, control, setValue } = form;
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, move } = useFieldArray({
     control,
     name: "records",
   });
@@ -36,7 +36,7 @@ const EducationReorderedList = () => {
       <Input placeholder="EDUCATION" isTitle {...register("title")} />
       <ReorderedList
         items={fields}
-        onReorder={(items) => setValue("records", items)}
+        onReorder={(oldIndex, newIndex) => move(oldIndex, newIndex)}
         render={({ index, isActive }, listeners) => {
           const isLast = index === fields.length - 1;
 

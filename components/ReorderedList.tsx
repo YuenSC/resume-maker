@@ -18,7 +18,7 @@ import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
 type ReorderedListProps<T extends { id: string }> = {
   items: T[];
-  onReorder: (items: T[]) => void;
+  onReorder: (oldIndex: number, newIndex: number) => void;
   render: (
     props: { item: T; index: number; isActive: boolean },
     listeners: SyntheticListenerMap | undefined,
@@ -50,25 +50,19 @@ const ReorderedList = <T extends { id: string }>({
         if (over && active.id !== over.id) {
           const oldIndex = items.findIndex((item) => item.id === active.id);
           const newIndex = items.findIndex((item) => item.id === over.id);
-          onReorder(arrayMove(items, oldIndex, newIndex));
+          onReorder(oldIndex, newIndex);
         }
       }}
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        {items.map((item, index) => (
-          <ReorderedListItem key={item.id} id={item.id}>
-            {(listeners) =>
-              render(
-                {
-                  item,
-                  index,
-                  isActive: item.id === activeId,
-                },
-                listeners,
-              )
-            }
-          </ReorderedListItem>
-        ))}
+        {items.map((item, index) => {
+          const isActive = item.id === activeId;
+          return (
+            <ReorderedListItem key={item.id} id={item.id} isActive={isActive}>
+              {(listeners) => render({ item, index, isActive }, listeners)}
+            </ReorderedListItem>
+          );
+        })}
       </SortableContext>
     </DndContext>
   );

@@ -23,8 +23,8 @@ const ExperienceReorderedList = () => {
   const form = useForm<EditorResume["workExperiences"]>({
     defaultValues: workExperiences,
   });
-  const { register, control, setValue } = form;
-  const { fields, append, remove } = useFieldArray({
+  const { register, control } = form;
+  const { fields, append, remove, move } = useFieldArray({
     control,
     name: "records",
   });
@@ -36,7 +36,7 @@ const ExperienceReorderedList = () => {
       <Input placeholder="Experience" isTitle {...register("title")} />
       <ReorderedList
         items={fields}
-        onReorder={(items) => setValue("records", items)}
+        onReorder={(oldIndex, newIndex) => move(oldIndex, newIndex)}
         render={({ index, isActive }, listeners) => {
           const isLast = index === fields.length - 1;
 
