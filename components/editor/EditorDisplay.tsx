@@ -2,12 +2,11 @@
 
 import { memo } from "react";
 import AboutMe from "./components/AboutMe";
+import ExperienceReorderedList from "./components/ExperienceReorderedList";
 import NameInput from "./components/NameInput";
 import PersonalDetail from "./components/PersonalDetail";
 import PhotoUpload from "./components/PhotoUpload";
 import { useEditor } from "./editorContext";
-import ExperienceReorderedList from "./components/ExperienceReorderedList";
-import { Textarea } from "../ui/textarea";
 
 const EditorDisplay = () => {
   const { editorRef } = useEditor();

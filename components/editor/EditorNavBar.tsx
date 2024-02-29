@@ -8,7 +8,7 @@ const EditorNavBar = () => {
   const { handlePrint } = useEditor();
 
   return (
-    <div className="fixed z-10 flex w-[calc(100%-2rem)] items-center justify-between rounded-xl bg-black px-4 py-2 text-sm text-white">
+    <div className="fixed z-50 flex w-[calc(100%-2rem)] items-center justify-between rounded-xl bg-black px-4 py-2 text-sm text-white">
       <div>ResumeMaker</div>
       {/* UI Controls */}
       <div>UI Controls</div>

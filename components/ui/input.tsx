@@ -16,13 +16,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const innerRef = React.useRef<React.ElementRef<"input">>(null);
     React.useImperativeHandle(outerRef, () => innerRef.current!, []);
 
-    // React.useEffect(() => {
-    //   if (autoWidth && innerRef.current && typeof value === "string") {
-    //     console.log("value.length", value.length);
-    //     innerRef.current.style.width = (value.length || 9) + "ch";s
-    //   }
-    // }, [autoWidth, value]);
-
     return (
       <span
         aria-placeholder={placeholder}
@@ -40,9 +33,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             innerRef.current.innerHTML = placeholder || "";
           }
         }}
-      >
-        {value}
-      </span>
+      />
     );
   },
 );
