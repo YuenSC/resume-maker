@@ -9,7 +9,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { useEditor } from "../editorContext";
 
 const SkillReorderedGrid = () => {
-  const { resume, section } = useEditor();
+  const { resume, sectionConfig } = useEditor();
 
   const { register, control } = useForm<EditorResume["skills"]>({
     defaultValues: resume.skills,
@@ -19,7 +19,7 @@ const SkillReorderedGrid = () => {
     name: "records",
   });
 
-  if (!section.skills) return null;
+  if (!sectionConfig.skills) return null;
 
   return (
     <DottedLineBox className="flex flex-col gap-2">

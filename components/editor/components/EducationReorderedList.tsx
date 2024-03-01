@@ -12,7 +12,7 @@ const EducationReorderedList = () => {
   const {
     resume: { education },
     setResume,
-    section,
+    sectionConfig,
   } = useEditor();
 
   const form = useForm<EditorResume["education"]>({
@@ -24,7 +24,7 @@ const EducationReorderedList = () => {
     name: "records",
   });
 
-  if (!section.education) return null;
+  if (!sectionConfig.education) return null;
 
   return (
     <FormProvider {...form}>

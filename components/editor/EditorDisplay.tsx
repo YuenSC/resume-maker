@@ -11,7 +11,7 @@ import EducationReorderedList from "./components/EducationReorderedList";
 import SkillReorderedGrid from "./components/SkillReorderedGrid";
 
 const EditorDisplay = () => {
-  const { editorRef, section } = useEditor();
+  const { editorRef, sectionConfig } = useEditor();
 
   return (
     <div
@@ -19,7 +19,7 @@ const EditorDisplay = () => {
       className="grid aspect-[210/297] w-[1000px] gap-8  self-center bg-white p-12 print:w-[900px]"
       style={{
         gridTemplateColumns: "225px 1fr",
-        gridTemplateRows: section.photo ? "225px 1fr" : "5% 1fr",
+        gridTemplateRows: sectionConfig.photo ? "225px 1fr" : "5% 1fr",
       }}
     >
       <div className="col-span-2 flex w-full items-center gap-8">

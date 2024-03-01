@@ -7,7 +7,7 @@ const NameInput = () => {
   const {
     resume: { role, name },
     setResume,
-    section,
+    sectionConfig,
   } = useEditor();
 
   return (
@@ -22,7 +22,7 @@ const NameInput = () => {
           setResume((prev) => ({ ...prev, name: e.target.value }))
         }
       />
-      {section.role && (
+      {sectionConfig.role && (
         <Input
           value={role}
           placeholder="Your Role"

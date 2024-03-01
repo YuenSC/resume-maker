@@ -8,10 +8,10 @@ const AboutMe = () => {
   const {
     resume: { aboutMe },
     setResume,
-    section,
+    sectionConfig,
   } = useEditor();
 
-  if (!section.aboutMe) return null;
+  if (!sectionConfig.aboutMe) return null;
 
   return (
     <DottedLineBox>

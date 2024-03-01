@@ -80,14 +80,14 @@ const PersonalDetail = () => {
   const {
     resume: { personalDetails },
     setResume,
-    section,
+    sectionConfig,
   } = useEditor();
 
-  const isAllFieldsHidden = Object.entries(section.personalDetails).every(
+  const isAllFieldsHidden = Object.entries(sectionConfig.personalDetails).every(
     ([key, shown]) => !shown,
   );
 
-  if (!section.personalDetails || isAllFieldsHidden) return null;
+  if (!sectionConfig.personalDetails || isAllFieldsHidden) return null;
 
   return (
     <DottedLineBox>
@@ -108,7 +108,7 @@ const PersonalDetail = () => {
       />
       <div className="ml-2 flex flex-col gap-1">
         {Object.keys(EditorPersonalDetailEnum).map((key) => {
-          if (!section.personalDetails[key as EditorPersonalDetailEnum])
+          if (!sectionConfig.personalDetails[key as EditorPersonalDetailEnum])
             return null;
 
           return (

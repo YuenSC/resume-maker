@@ -81,7 +81,11 @@ const switchSections = [
 ];
 
 const EditorNavBar = () => {
-  const { handlePrint, setSection, section } = useEditor();
+  const {
+    handlePrint,
+    setSectionConfig: setSection,
+    sectionConfig,
+  } = useEditor();
 
   return (
     <div className="fixed z-50 flex w-[calc(100%-2rem)] items-center justify-between rounded-xl bg-black px-4 py-2 text-sm text-white">
@@ -109,7 +113,7 @@ const EditorNavBar = () => {
                     <div key={item.key} className="flex h-5 items-center gap-2">
                       <Switch
                         id={item.label}
-                        checked={get(section, item.key)}
+                        checked={get(sectionConfig, item.key)}
                         onCheckedChange={(checked) => {
                           setSection((prev) => {
                             const copy = { ...prev };

@@ -1,6 +1,6 @@
 import { EditorPersonalDetailEnum } from "./EditorPersonalDetailEnum";
 
-export type EditorSection = {
+export type EditorSectionConfig = {
   personalDetails: Record<EditorPersonalDetailEnum, boolean>;
   photo: boolean;
   aboutMe: boolean;

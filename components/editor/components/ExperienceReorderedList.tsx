@@ -18,7 +18,7 @@ const ExperienceReorderedList = () => {
   const {
     resume: { workExperiences },
     setResume,
-    section,
+    sectionConfig,
   } = useEditor();
 
   const form = useForm<EditorResume["workExperiences"]>({
@@ -30,7 +30,7 @@ const ExperienceReorderedList = () => {
     name: "records",
   });
 
-  if (!section.workExperience) return null;
+  if (!sectionConfig.workExperience) return null;
 
   return (
     <FormProvider {...form}>

@@ -23,7 +23,7 @@ const PhotoUpload = () => {
   const {
     resume: { photo },
     setResume,
-    section,
+    sectionConfig,
   } = useEditor();
 
   const onDrop = useCallback(
@@ -63,7 +63,7 @@ const PhotoUpload = () => {
     },
   });
 
-  if (!section.photo) return null;
+  if (!sectionConfig.photo) return null;
 
   return (
     <div {...getRootProps()}>

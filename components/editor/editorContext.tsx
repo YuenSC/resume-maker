@@ -1,5 +1,5 @@
 import { EditorResume } from "@/lib/types/editor/EditorResume";
-import { EditorSection } from "@/lib/types/editor/EditorSection";
+import { EditorSectionConfig } from "@/lib/types/editor/EditorSectionConfig";
 import { generateRandomId } from "@/lib/utils";
 import {
   Dispatch,
@@ -14,7 +14,7 @@ import {
 } from "react";
 import { useReactToPrint } from "react-to-print";
 
-const defaultSection: EditorSection = {
+const defaultSectionConfig: EditorSectionConfig = {
   personalDetails: {
     location: true,
     phone: true,
@@ -93,21 +93,21 @@ const defaultResume: EditorResume = {
 type IEditorContext = {
   editorRef?: MutableRefObject<HTMLDivElement | null>;
   handlePrint?: () => void;
-  section: EditorSection;
-  setSection: Dispatch<SetStateAction<EditorSection>>;
+  sectionConfig: EditorSectionConfig;
+  setSectionConfig: Dispatch<SetStateAction<EditorSectionConfig>>;
   resume: EditorResume;
   setResume: Dispatch<SetStateAction<EditorResume>>;
 };
 
 const editorContext = createContext<IEditorContext>({
-  section: defaultSection,
-  setSection: () => undefined,
+  sectionConfig: defaultSectionConfig,
+  setSectionConfig: () => undefined,
   resume: defaultResume,
   setResume: () => undefined,
 });
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
-  const [section, setSection] = useState(defaultSection);
+  const [sectionConfig, setSectionConfig] = useState(defaultSectionConfig);
   const [resume, setResume] = useState(defaultResume);
 
   const editorRef = useRef<HTMLDivElement>(null);
@@ -118,8 +118,15 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   });
 
   const value = useMemo(
-    () => ({ editorRef, handlePrint, section, setSection, resume, setResume }),
-    [handlePrint, resume, section],
+    () => ({
+      editorRef,
+      handlePrint,
+      sectionConfig,
+      setSectionConfig,
+      resume,
+      setResume,
+    }),
+    [handlePrint, resume, sectionConfig],
   );
 
   return (
