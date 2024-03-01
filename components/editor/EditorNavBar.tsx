@@ -98,7 +98,7 @@ const EditorNavBar = () => {
       <div>ResumeCreator</div>
       {/* UI Controls */}
       <div className="flex items-center gap-4">
-        <Popover open>
+        <Popover>
           <PopoverTrigger>
             <div className="group flex items-center">
               <FaFont size={16} className="mr-1 group-hover:opacity-50" />
