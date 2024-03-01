@@ -11,6 +11,7 @@ import EducationReorderedList from "./components/EducationReorderedList";
 import SkillReorderedGrid from "./components/SkillReorderedGrid";
 import { AvailableFonts } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+import LanguageReorderedGrid from "./components/LanguageReorderedGrid";
 
 const EditorDisplay = () => {
   const { editorRef, sectionConfig, typography } = useEditor();
@@ -45,6 +46,7 @@ const EditorDisplay = () => {
         <ExperienceReorderedList />
         <EducationReorderedList />
         <SkillReorderedGrid />
+        <LanguageReorderedGrid />
       </div>
     </div>
   );

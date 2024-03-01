@@ -40,4 +40,8 @@ export type EditorResume = {
     title: string;
     records: { title: string }[];
   };
+  languages: {
+    title: string;
+    records: { title: string }[];
+  };
 };

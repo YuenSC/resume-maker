@@ -89,6 +89,10 @@ const defaultResume: EditorResume = {
     title: "",
     records: [{ title: "" }],
   },
+  languages: {
+    title: "",
+    records: [{ title: "" }],
+  },
 };
 
 type IEditorContext = {
