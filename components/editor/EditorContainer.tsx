@@ -53,7 +53,12 @@ const EditorContainer = ({ children, className }: EditorContainerProps) => {
         </AlertDialogContent>
       </AlertDialog>
       <div className="fixed top-0 h-[50vh] w-full bg-gradient-to-b from-white/50 to-primary"></div>
-      <div className={cn("relative flex w-full flex-col gap-4 p-4", className)}>
+      <div
+        className={cn(
+          "relative flex w-full min-w-[1024px] flex-col gap-4 p-4",
+          className,
+        )}
+      >
         {children}
       </div>
     </EditorProvider>

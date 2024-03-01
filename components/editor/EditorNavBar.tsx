@@ -94,7 +94,7 @@ const EditorNavBar = () => {
   } = useEditor();
 
   return (
-    <div className="fixed z-50 flex w-[calc(100vw-2.5rem)] items-center justify-between rounded-xl bg-black px-4 py-2 text-sm text-white">
+    <div className="fixed z-50 flex w-[calc(100vw-2.5rem)] min-w-[calc(1024px-2.5rem)] items-center justify-between rounded-xl bg-black px-4 py-2 text-sm text-white">
       <div>ResumeCreator</div>
       {/* UI Controls */}
       <div className="flex items-center gap-4">
