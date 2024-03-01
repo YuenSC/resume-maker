@@ -24,7 +24,7 @@ const EducationReorderedList = () => {
     name: "records",
   });
 
-  if (!section.workExperience) return null;
+  if (!section.education) return null;
 
   return (
     <FormProvider {...form}>
@@ -51,7 +51,7 @@ const EducationReorderedList = () => {
                 <div className="absolute left-3 top-2.5 flex h-full flex-col items-center">
                   <div className="z-20 h-2.5 w-2.5 rounded-full bg-primary" />
                   {!isActive && !isLast && (
-                    <div className="absolute top-2 z-10 h-[100%] w-0.5 scale-y-105 bg-gray-200" />
+                    <div className="absolute top-2 z-10 h-[100%] w-0.5 scale-y-105 bg-gray-100" />
                   )}
                 </div>
                 <ReorderListControl

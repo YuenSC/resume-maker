@@ -83,7 +83,11 @@ const PersonalDetail = () => {
     section,
   } = useEditor();
 
-  if (!section.aboutMe) return null;
+  const isAllFieldsHidden = Object.entries(section.personalDetails).every(
+    ([key, shown]) => !shown,
+  );
+
+  if (!section.personalDetails || isAllFieldsHidden) return null;
 
   return (
     <DottedLineBox>
@@ -104,6 +108,9 @@ const PersonalDetail = () => {
       />
       <div className="ml-2 flex flex-col gap-1">
         {Object.keys(EditorPersonalDetailEnum).map((key) => {
+          if (!section.personalDetails[key as EditorPersonalDetailEnum])
+            return null;
+
           return (
             <IconInput
               key={key}

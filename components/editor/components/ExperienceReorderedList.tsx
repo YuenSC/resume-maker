@@ -52,7 +52,7 @@ const ExperienceReorderedList = () => {
                 <div className="absolute left-3 top-2.5 flex h-full flex-col items-center">
                   <div className="z-20 h-2.5 w-2.5 rounded-full bg-primary" />
                   {!isActive && !isLast && (
-                    <div className="z-10 h-[105%] w-0.5 scale-y-105 bg-gray-200" />
+                    <div className="z-10 h-[105%] w-0.5 scale-y-105 bg-gray-100" />
                   )}
                 </div>
 

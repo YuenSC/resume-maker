@@ -21,7 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         aria-placeholder={placeholder}
         contentEditable
         className={cn(
-          "flex w-full items-center whitespace-nowrap rounded-sm bg-background px-1.5 text-base text-black ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-black hover:bg-gray-200 focus:bg-gray-200 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+          "flex w-full items-center whitespace-nowrap rounded-sm bg-background px-1.5 text-base text-black ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-black hover:bg-gray-100 focus:bg-gray-100 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
           `before:cursor-text before:content-none empty:before:content-[attr(aria-placeholder)]`,
           isTitle && "font-semibold text-black placeholder:text-black",
           className,

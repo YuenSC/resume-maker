@@ -7,6 +7,7 @@ const NameInput = () => {
   const {
     resume: { role, name },
     setResume,
+    section,
   } = useEditor();
 
   return (
@@ -15,19 +16,22 @@ const NameInput = () => {
         value={name}
         isTitle
         placeholder="Your Name"
-        className="text-5xl font-semibold text-primary"
+        className="text-6xl font-semibold text-primary"
         rows={1}
         onChange={(e) =>
           setResume((prev) => ({ ...prev, name: e.target.value }))
         }
       />
-      <Input
-        value={role}
-        placeholder="Your Role"
-        onChange={(e) =>
-          setResume((prev) => ({ ...prev, role: e.target.value }))
-        }
-      />
+      {section.role && (
+        <Input
+          value={role}
+          placeholder="Your Role"
+          className="px-2.5"
+          onChange={(e) =>
+            setResume((prev) => ({ ...prev, role: e.target.value }))
+          }
+        />
+      )}
     </div>
   );
 };

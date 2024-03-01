@@ -35,7 +35,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       <textarea
         contentEditable
         className={cn(
-          "flex w-full resize-none overflow-hidden rounded-sm bg-background p-2 text-sm placeholder:text-black hover:bg-gray-200 focus-visible:bg-gray-200 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+          "flex w-full resize-none overflow-hidden rounded-sm bg-background p-2 text-sm placeholder:text-black hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
           isTitle && "text-primary placeholder:text-primary",
           className,
         )}

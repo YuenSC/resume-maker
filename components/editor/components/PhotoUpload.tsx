@@ -23,6 +23,7 @@ const PhotoUpload = () => {
   const {
     resume: { photo },
     setResume,
+    section,
   } = useEditor();
 
   const onDrop = useCallback(
@@ -61,6 +62,8 @@ const PhotoUpload = () => {
       "image/webp": [".webp"],
     },
   });
+
+  if (!section.photo) return null;
 
   return (
     <div {...getRootProps()}>
