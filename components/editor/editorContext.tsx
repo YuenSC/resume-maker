@@ -1,3 +1,4 @@
+import { AvailableFontKeyEnum } from "@/lib/fonts";
 import { EditorResume } from "@/lib/types/editor/EditorResume";
 import { EditorSectionConfig } from "@/lib/types/editor/EditorSectionConfig";
 import { generateRandomId } from "@/lib/utils";
@@ -97,6 +98,8 @@ type IEditorContext = {
   setSectionConfig: Dispatch<SetStateAction<EditorSectionConfig>>;
   resume: EditorResume;
   setResume: Dispatch<SetStateAction<EditorResume>>;
+  typography: AvailableFontKeyEnum;
+  setTypography: Dispatch<SetStateAction<AvailableFontKeyEnum>>;
 };
 
 const editorContext = createContext<IEditorContext>({
@@ -104,11 +107,14 @@ const editorContext = createContext<IEditorContext>({
   setSectionConfig: () => undefined,
   resume: defaultResume,
   setResume: () => undefined,
+  typography: AvailableFontKeyEnum.inter,
+  setTypography: () => undefined,
 });
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
   const [sectionConfig, setSectionConfig] = useState(defaultSectionConfig);
   const [resume, setResume] = useState(defaultResume);
+  const [typography, setTypography] = useState(AvailableFontKeyEnum.inter);
 
   const editorRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
@@ -125,8 +131,10 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       setSectionConfig,
       resume,
       setResume,
+      typography,
+      setTypography,
     }),
-    [handlePrint, resume, sectionConfig],
+    [handlePrint, resume, sectionConfig, typography],
   );
 
   return (

@@ -6,14 +6,18 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@radix-ui/react-popover";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { CiSettings } from "react-icons/ci";
-import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Switch } from "../ui/switch";
 import { useEditor } from "./editorContext";
 import { get, set } from "lodash";
+import { FaFont } from "react-icons/fa";
+import { AvailableFontKeyEnum, AvailableFonts } from "@/lib/fonts";
+import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
+import { SelectValue } from "../ui/select";
 
 const switchSections = [
   {
@@ -85,19 +89,57 @@ const EditorNavBar = () => {
     handlePrint,
     setSectionConfig: setSection,
     sectionConfig,
+    typography,
+    setTypography,
   } = useEditor();
 
   return (
-    <div className="fixed z-50 flex w-[calc(100%-2rem)] items-center justify-between rounded-xl bg-black px-4 py-2 text-sm text-white">
-      <div>ResumeMaker</div>
+    <div className="fixed z-50 flex w-[calc(100vw-2.5rem)] items-center justify-between rounded-xl bg-black px-4 py-2 text-sm text-white">
+      <div>ResumeCreator</div>
       {/* UI Controls */}
-      <div className="flex items-center">
+      <div className="flex items-center gap-4">
+        <Popover open>
+          <PopoverTrigger>
+            <div className="group flex items-center">
+              <FaFont size={16} className="mr-1 group-hover:opacity-50" />
+              <p className="text-xs">Typography</p>
+              <IoIosArrowDown className="ml-1" size={12} />
+            </div>
+          </PopoverTrigger>
+          <PopoverContent className="rounded-lg bg-white p-4 text-black shadow-lg">
+            <PopoverArrow className="text-white" fill="white" />
+            <div className="flex flex-col gap-1">
+              <Label className="text-xs">Font</Label>
+              <Select
+                defaultValue={typography}
+                onValueChange={(value) => {
+                  setTypography(value as AvailableFontKeyEnum);
+                }}
+              >
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Theme" />
+                </SelectTrigger>
+                <SelectContent>
+                  {AvailableFonts.map(({ label, variable }) => (
+                    <SelectItem
+                      key={variable}
+                      value={variable}
+                      className="text-xs text-black"
+                    >
+                      {label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </PopoverContent>
+        </Popover>
         <Popover>
           <PopoverTrigger>
             <div className="group flex items-center">
               <CiSettings size={20} className="group-hover:opacity-50" />
-              <p>Sections</p>
-              <IoIosArrowUp className="ml-1" size={12} />
+              <p className="text-xs">Sections</p>
+              <IoIosArrowDown className="ml-1" size={12} />
             </div>
           </PopoverTrigger>
           <PopoverContent className="rounded-lg bg-white p-4 text-black shadow-lg">

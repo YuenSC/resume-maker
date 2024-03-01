@@ -9,14 +9,23 @@ import PhotoUpload from "./components/PhotoUpload";
 import { useEditor } from "./editorContext";
 import EducationReorderedList from "./components/EducationReorderedList";
 import SkillReorderedGrid from "./components/SkillReorderedGrid";
+import { AvailableFonts } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
 const EditorDisplay = () => {
-  const { editorRef, sectionConfig } = useEditor();
+  const { editorRef, sectionConfig, typography } = useEditor();
+
+  const currentFont = AvailableFonts.find(
+    (item) => item.variable === typography,
+  )?.value;
 
   return (
     <div
       ref={editorRef}
-      className="grid aspect-[210/297] w-[1000px] gap-8  self-center bg-white p-12 print:w-[900px]"
+      className={cn(
+        "grid aspect-[210/297] w-[1000px] gap-8  self-center bg-white p-12 print:w-[900px]",
+        currentFont?.className,
+      )}
       style={{
         gridTemplateColumns: "225px 1fr",
         gridTemplateRows: sectionConfig.photo ? "225px 1fr" : "5% 1fr",
