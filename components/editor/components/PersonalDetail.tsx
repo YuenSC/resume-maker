@@ -88,7 +88,7 @@ const PersonalDetail = () => {
   return (
     <DottedLineBox>
       <Input
-        placeholder="Personal Detail"
+        placeholder="PERSONAL DETAILS"
         isTitle
         className="mb-4"
         value={personalDetails.title}

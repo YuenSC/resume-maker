@@ -16,7 +16,7 @@ const AboutMe = () => {
   return (
     <DottedLineBox>
       <Input
-        placeholder="About Me"
+        placeholder="ABOUT ME"
         isTitle
         value={aboutMe.title}
         onChange={(e) =>

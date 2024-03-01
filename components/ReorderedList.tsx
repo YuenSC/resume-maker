@@ -59,8 +59,13 @@ const ReorderedList = <T extends { id: string }>({
         <div className={cn(type === "grid" && "grid grid-cols-3 gap-2")}>
           {items.map((item, index) => {
             const isActive = item.id === activeId;
+
             return (
-              <ReorderedListItem key={item.id} id={item.id}>
+              <ReorderedListItem
+                key={item.id}
+                id={item.id}
+                className={cn("relative", isActive && "z-10 bg-red-200")}
+              >
                 {(listeners) => render({ item, index, isActive }, listeners)}
               </ReorderedListItem>
             );

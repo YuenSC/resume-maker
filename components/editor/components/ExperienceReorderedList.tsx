@@ -35,7 +35,7 @@ const ExperienceReorderedList = () => {
   return (
     <FormProvider {...form}>
       <div>
-        <Input placeholder="Experience" isTitle {...register("title")} />
+        <Input placeholder="EXPERIENCE" isTitle {...register("title")} />
         <ReorderedList
           items={fields}
           onReorder={(oldIndex, newIndex) => move(oldIndex, newIndex)}
@@ -46,7 +46,7 @@ const ExperienceReorderedList = () => {
               <DottedLineBox
                 className={cn(
                   "group relative flex cursor-auto flex-col gap-1 bg-white pl-8",
-                  isActive && "z-20 shadow-xl",
+                  isActive && "shadow-xl",
                 )}
               >
                 <div className="absolute left-3 top-2.5 flex h-full flex-col items-center">
@@ -55,6 +55,7 @@ const ExperienceReorderedList = () => {
                     <div className="z-10 h-[105%] w-0.5 scale-y-105 bg-gray-200" />
                   )}
                 </div>
+
                 <ReorderListControl
                   canRemove={fields.length > 1}
                   canReorder={fields.length > 1}

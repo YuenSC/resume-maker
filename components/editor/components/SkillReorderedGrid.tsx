@@ -30,13 +30,11 @@ const SkillReorderedGrid = () => {
         items={fields}
         onReorder={(oldIndex, newIndex) => move(oldIndex, newIndex)}
         render={({ index, isActive }, listeners) => {
-          const isLast = index === fields.length - 1;
-
           return (
             <div
               className={cn(
                 "group relative flex cursor-auto flex-col gap-1 bg-white",
-                isActive && "z-20 shadow-xl",
+                isActive && "shadow-xl",
               )}
             >
               <ReorderListControl
@@ -48,7 +46,7 @@ const SkillReorderedGrid = () => {
               />
               <Input
                 placeholder="Enter your skill"
-                className="bg-gray-200 px-2 py-1 text-xs"
+                className="bg-gray-200 px-2 py-1 text-sm"
                 {...register(`records.${index}.title`)}
               />
             </div>
