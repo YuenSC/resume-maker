@@ -58,6 +58,13 @@ const defaultResume: EditorResume = {
         position: "",
         title: "",
       },
+      {
+        id: generateRandomId(),
+        description: "",
+        duration: "",
+        position: "",
+        title: "",
+      },
     ],
   },
   education: {
@@ -76,6 +83,10 @@ const defaultResume: EditorResume = {
         duration: "",
       },
     ],
+  },
+  skills: {
+    title: "",
+    records: [{ title: "" }],
   },
 };
 

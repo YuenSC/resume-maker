@@ -7,25 +7,16 @@ import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
 type ReorderedListItemProps = {
   id: string;
-  isActive?: boolean;
   children: (listeners: SyntheticListenerMap | undefined) => ReactNode;
 };
 
-const ReorderedListItem = ({
-  id,
-  isActive,
-  children,
-}: ReorderedListItemProps) => {
+const ReorderedListItem = ({ id, children }: ReorderedListItemProps) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
   return (
-    <DottedLineBox
+    <div
       ref={setNodeRef}
-      className={cn(
-        "group relative flex cursor-auto flex-col gap-1 bg-white pl-8",
-        isActive && "z-20 shadow-xl",
-      )}
       style={{
         transform: CSS.Transform.toString(transform),
         transition,
@@ -33,7 +24,7 @@ const ReorderedListItem = ({
       {...attributes}
     >
       {children(listeners)}
-    </DottedLineBox>
+    </div>
   );
 };
 

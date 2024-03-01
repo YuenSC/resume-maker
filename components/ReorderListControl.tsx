@@ -26,29 +26,29 @@ const ReorderListControl = ({
         <Button
           size="icon"
           variant="secondary"
-          className="text-white"
+          className="h-6 w-6 text-white"
           onClick={onRemove}
         >
-          <FiMinus size={16} />
+          <FiMinus size={12} />
         </Button>
       )}
       {canReorder && (
         <Button
           size="icon"
           variant="secondary"
-          className="text-white"
+          className="h-6 w-6 text-white"
           {...reorderListeners}
         >
-          <IoSwapVertical size={16} />
+          <IoSwapVertical size={12} />
         </Button>
       )}
       <Button
         size="icon"
         variant="secondary"
-        className="text-white"
+        className="h-6 w-6 text-white"
         onClick={onAppend}
       >
-        <IoMdAdd size={16} />
+        <IoMdAdd size={12} />
       </Button>
     </div>
   );

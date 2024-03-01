@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import {
   DndContext,
   KeyboardSensor,
@@ -6,15 +7,13 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
+import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 import {
   SortableContext,
-  arrayMove,
   sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { ReactNode, memo, useState } from "react";
 import ReorderedListItem from "./ReorderedListItem";
-import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
 type ReorderedListProps<T extends { id: string }> = {
   items: T[];
@@ -23,12 +22,14 @@ type ReorderedListProps<T extends { id: string }> = {
     props: { item: T; index: number; isActive: boolean },
     listeners: SyntheticListenerMap | undefined,
   ) => ReactNode;
+  type?: "grid" | "list";
 };
 
 const ReorderedList = <T extends { id: string }>({
   items,
   onReorder,
   render,
+  type = "list",
 }: ReorderedListProps<T>) => {
   const [activeId, setActiveId] = useState("");
 
@@ -54,15 +55,17 @@ const ReorderedList = <T extends { id: string }>({
         }
       }}
     >
-      <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        {items.map((item, index) => {
-          const isActive = item.id === activeId;
-          return (
-            <ReorderedListItem key={item.id} id={item.id} isActive={isActive}>
-              {(listeners) => render({ item, index, isActive }, listeners)}
-            </ReorderedListItem>
-          );
-        })}
+      <SortableContext items={items}>
+        <div className={cn(type === "grid" && "grid grid-cols-3 gap-2")}>
+          {items.map((item, index) => {
+            const isActive = item.id === activeId;
+            return (
+              <ReorderedListItem key={item.id} id={item.id}>
+                {(listeners) => render({ item, index, isActive }, listeners)}
+              </ReorderedListItem>
+            );
+          })}
+        </div>
       </SortableContext>
     </DndContext>
   );

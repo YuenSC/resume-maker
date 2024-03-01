@@ -36,4 +36,8 @@ export type EditorResume = {
     title: string;
     records: Array<EducationRecord>;
   };
+  skills: {
+    title: string;
+    records: { title: string }[];
+  };
 };

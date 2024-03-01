@@ -8,6 +8,7 @@ import PersonalDetail from "./components/PersonalDetail";
 import PhotoUpload from "./components/PhotoUpload";
 import { useEditor } from "./editorContext";
 import EducationReorderedList from "./components/EducationReorderedList";
+import SkillReorderedGrid from "./components/SkillReorderedGrid";
 
 const EditorDisplay = () => {
   const { editorRef } = useEditor();
@@ -31,11 +32,10 @@ const EditorDisplay = () => {
         <PersonalDetail />
       </div>
 
-      <div>
-        <div className="mb-8">
-          <ExperienceReorderedList />
-        </div>
+      <div className="flex flex-col gap-4">
+        <ExperienceReorderedList />
         <EducationReorderedList />
+        <SkillReorderedGrid />
       </div>
     </div>
   );

@@ -1,16 +1,11 @@
+import DottedLineBox from "@/components/DottedLineBox";
 import ReorderListControl from "@/components/ReorderListControl";
 import ReorderedList from "@/components/ReorderedList";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { EditorResume } from "@/lib/types/editor/EditorResume";
-import { generateRandomId } from "@/lib/utils";
+import { cn, generateRandomId } from "@/lib/utils";
 import { memo } from "react";
-import {
-  Controller,
-  FormProvider,
-  useFieldArray,
-  useForm,
-} from "react-hook-form";
+import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { useEditor } from "../editorContext";
 
 const EducationReorderedList = () => {
@@ -33,61 +28,73 @@ const EducationReorderedList = () => {
 
   return (
     <FormProvider {...form}>
-      <Input placeholder="EDUCATION" isTitle {...register("title")} />
-      <ReorderedList
-        items={fields}
-        onReorder={(oldIndex, newIndex) => move(oldIndex, newIndex)}
-        render={({ index, isActive }, listeners) => {
-          const isLast = index === fields.length - 1;
+      <div>
+        <Input
+          placeholder="EDUCATION"
+          className="px-2"
+          isTitle
+          {...register("title")}
+        />
+        <ReorderedList
+          items={fields}
+          onReorder={(oldIndex, newIndex) => move(oldIndex, newIndex)}
+          render={({ index, isActive }, listeners) => {
+            const isLast = index === fields.length - 1;
 
-          return (
-            <>
-              <div className="absolute left-3 top-2.5 flex h-full flex-col items-center">
-                <div className="z-20 h-2.5 w-2.5 rounded-full bg-primary" />
-                {!isActive && !isLast && (
-                  <div className="absolute top-2 z-10 h-[100%] w-0.5 scale-y-105 bg-gray-200" />
+            return (
+              <DottedLineBox
+                className={cn(
+                  "group relative flex cursor-auto flex-col gap-1 bg-white pl-8",
+                  isActive && "z-20 shadow-xl",
                 )}
-              </div>
-              <ReorderListControl
-                canRemove={fields.length > 1}
-                canReorder={fields.length > 1}
-                onRemove={() => remove(index)}
-                onAppend={() =>
-                  append({
-                    id: generateRandomId(),
-                    school: "",
-                    duration: "",
-                    degree: "",
-                  })
-                }
-                reorderListeners={listeners}
-              />
+              >
+                <div className="absolute left-3 top-2.5 flex h-full flex-col items-center">
+                  <div className="z-20 h-2.5 w-2.5 rounded-full bg-primary" />
+                  {!isActive && !isLast && (
+                    <div className="absolute top-2 z-10 h-[100%] w-0.5 scale-y-105 bg-gray-200" />
+                  )}
+                </div>
+                <ReorderListControl
+                  canRemove={fields.length > 1}
+                  canReorder={fields.length > 1}
+                  onRemove={() => remove(index)}
+                  onAppend={() =>
+                    append({
+                      id: generateRandomId(),
+                      school: "",
+                      duration: "",
+                      degree: "",
+                    })
+                  }
+                  reorderListeners={listeners}
+                />
 
-              <Input
-                autoFocus
-                placeholder="School"
-                isTitle
-                className="text-primary placeholder:text-primary"
-                {...register(`records.${index}.school`)}
-              />
-              <div className="flex">
                 <Input
-                  placeholder="DEGREE"
-                  className="font-medium"
+                  autoFocus
+                  placeholder="School"
                   isTitle
-                  {...register(`records.${index}.degree`)}
+                  className="text-primary placeholder:text-primary"
+                  {...register(`records.${index}.school`)}
                 />
-                <Input
-                  placeholder="From - Until"
-                  isTitle
-                  className="flex w-fit font-light"
-                  {...register(`records.${index}.duration`)}
-                />
-              </div>
-            </>
-          );
-        }}
-      />
+                <div className="flex">
+                  <Input
+                    placeholder="DEGREE"
+                    className="font-medium"
+                    isTitle
+                    {...register(`records.${index}.degree`)}
+                  />
+                  <Input
+                    placeholder="From - Until"
+                    isTitle
+                    className="flex w-fit font-light"
+                    {...register(`records.${index}.duration`)}
+                  />
+                </div>
+              </DottedLineBox>
+            );
+          }}
+        />
+      </div>
     </FormProvider>
   );
 };
