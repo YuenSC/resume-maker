@@ -1,10 +1,12 @@
 import { useToast } from "@/components/ui/use-toast";
+import { EditorResume } from "@/lib/types/editor/EditorResume";
 import { cn } from "@/lib/utils";
 import { UploadIcon } from "lucide-react";
+import Image from "next/image";
 import { memo, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { useController } from "react-hook-form";
 import { useEditor } from "../editorContext";
-import Image from "next/image";
 
 const toBase64: (file: File) => Promise<string> = (file) =>
   new Promise<string>((resolve, reject) => {
@@ -20,11 +22,12 @@ const toBase64: (file: File) => Promise<string> = (file) =>
 const PhotoUpload = () => {
   const { toast } = useToast();
 
+  const { sectionConfig } = useEditor();
   const {
-    resume: { photo },
-    setResume,
-    sectionConfig,
-  } = useEditor();
+    field: { value: photo, onChange },
+  } = useController<EditorResume, "photo">({
+    name: "photo",
+  });
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
@@ -39,7 +42,7 @@ const PhotoUpload = () => {
 
       try {
         const base64 = await toBase64(imageFile);
-        setResume((prev) => ({ ...prev, photo: base64 }));
+        onChange(base64);
       } catch (error) {
         console.log("error", error);
         toast({
@@ -49,7 +52,7 @@ const PhotoUpload = () => {
         });
       }
     },
-    [setResume, toast],
+    [onChange, toast],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({

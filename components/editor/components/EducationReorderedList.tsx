@@ -5,23 +5,22 @@ import { Input } from "@/components/ui/input";
 import { EditorResume } from "@/lib/types/editor/EditorResume";
 import { cn, generateRandomId } from "@/lib/utils";
 import { memo } from "react";
-import { FormProvider, useFieldArray, useForm } from "react-hook-form";
+import {
+  FormProvider,
+  useFieldArray,
+  useForm,
+  useFormContext,
+} from "react-hook-form";
 import { useEditor } from "../editorContext";
 
 const EducationReorderedList = () => {
-  const {
-    resume: { education },
-    setResume,
-    sectionConfig,
-  } = useEditor();
+  const { sectionConfig } = useEditor();
 
-  const form = useForm<EditorResume["education"]>({
-    defaultValues: education,
-  });
+  const form = useFormContext<EditorResume>();
   const { register, control, setValue } = form;
   const { fields, append, remove, move } = useFieldArray({
     control,
-    name: "records",
+    name: "education.records",
   });
 
   if (!sectionConfig.education) return null;
@@ -33,7 +32,7 @@ const EducationReorderedList = () => {
           placeholder="EDUCATION"
           className="px-2"
           isTitle
-          {...register("title")}
+          {...register("education.title")}
         />
         <ReorderedList
           items={fields}
@@ -74,20 +73,20 @@ const EducationReorderedList = () => {
                   placeholder="School"
                   isTitle
                   className="text-primary placeholder:text-primary"
-                  {...register(`records.${index}.school`)}
+                  {...register(`education.records.${index}.school`)}
                 />
                 <div className="flex">
                   <Input
                     placeholder="DEGREE"
                     className="font-medium"
                     isTitle
-                    {...register(`records.${index}.degree`)}
+                    {...register(`education.records.${index}.degree`)}
                   />
                   <Input
                     placeholder="From - Until"
                     isTitle
                     className="flex w-fit font-light"
-                    {...register(`records.${index}.duration`)}
+                    {...register(`education.records.${index}.duration`)}
                   />
                 </div>
               </DottedLineBox>

@@ -8,12 +8,16 @@ import {
   ReactNode,
   SetStateAction,
   createContext,
+  useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useReactToPrint } from "react-to-print";
+import { useLocalStorage } from "usehooks-ts";
 
 const defaultSectionConfig: EditorSectionConfig = {
   personalDetails: {
@@ -100,8 +104,6 @@ type IEditorContext = {
   handlePrint?: () => void;
   sectionConfig: EditorSectionConfig;
   setSectionConfig: Dispatch<SetStateAction<EditorSectionConfig>>;
-  resume: EditorResume;
-  setResume: Dispatch<SetStateAction<EditorResume>>;
   typography: AvailableFontKeyEnum;
   setTypography: Dispatch<SetStateAction<AvailableFontKeyEnum>>;
 };
@@ -109,21 +111,41 @@ type IEditorContext = {
 const editorContext = createContext<IEditorContext>({
   sectionConfig: defaultSectionConfig,
   setSectionConfig: () => undefined,
-  resume: defaultResume,
-  setResume: () => undefined,
   typography: AvailableFontKeyEnum.inter,
   setTypography: () => undefined,
 });
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
-  const [sectionConfig, setSectionConfig] = useState(defaultSectionConfig);
-  const [resume, setResume] = useState(defaultResume);
-  const [typography, setTypography] = useState(AvailableFontKeyEnum.inter);
+  const [sectionConfig, setSectionConfig] = useLocalStorage(
+    "editor-section-config",
+    defaultSectionConfig,
+  );
+  const [typography, setTypography] = useLocalStorage(
+    "editor-typography",
+    AvailableFontKeyEnum.inter,
+  );
+
+  const [editorResume, setEditorResume] = useLocalStorage<EditorResume>(
+    "editor-resume",
+    defaultResume,
+  );
+
+  const form = useForm<EditorResume>({
+    defaultValues: editorResume,
+    mode: "onBlur",
+  });
+  const { handleSubmit, getValues } = form;
+  const onSubmit: SubmitHandler<EditorResume> = useCallback(
+    (values) => {
+      setEditorResume(values);
+    },
+    [setEditorResume],
+  );
 
   const editorRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
     content: () => editorRef.current,
-    documentTitle: `${resume.name}_Resume`,
+    documentTitle: `${getValues("name")}_Resume`,
     onBeforeGetContent: () => {},
   });
 
@@ -133,16 +155,23 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       handlePrint,
       sectionConfig,
       setSectionConfig,
-      resume,
-      setResume,
       typography,
       setTypography,
     }),
-    [handlePrint, resume, sectionConfig, typography],
+    [handlePrint, sectionConfig, setSectionConfig, setTypography, typography],
   );
 
   return (
-    <editorContext.Provider value={value}>{children}</editorContext.Provider>
+    <FormProvider {...form}>
+      <form
+        onBlur={handleSubmit(onSubmit)}
+        onSubmit={(e) => e.preventDefault()}
+      >
+        <editorContext.Provider value={value}>
+          {children}
+        </editorContext.Provider>
+      </form>
+    </FormProvider>
   );
 };
 

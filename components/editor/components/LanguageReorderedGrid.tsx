@@ -5,25 +5,23 @@ import { Input } from "@/components/ui/input";
 import { EditorResume } from "@/lib/types/editor/EditorResume";
 import { cn } from "@/lib/utils";
 import { memo } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useFieldArray, useForm, useFormContext } from "react-hook-form";
 import { useEditor } from "../editorContext";
 
 const LanguageReorderedGrid = () => {
-  const { resume, sectionConfig } = useEditor();
+  const { sectionConfig } = useEditor();
 
-  const { register, control } = useForm<EditorResume["languages"]>({
-    defaultValues: resume.languages,
-  });
+  const { register, control } = useFormContext<EditorResume>();
   const { append, move, fields, remove } = useFieldArray({
     control,
-    name: "records",
+    name: "languages.records",
   });
 
   if (!sectionConfig.skills) return null;
 
   return (
     <DottedLineBox className="flex flex-col gap-2">
-      <Input placeholder="LANGUAGES" isTitle {...register("title")} />
+      <Input placeholder="LANGUAGES" isTitle {...register("languages.title")} />
 
       <ReorderedList
         type="grid"
@@ -47,7 +45,7 @@ const LanguageReorderedGrid = () => {
               <Input
                 placeholder="Enter your language"
                 className="bg-gray-100 px-2 py-1 text-sm"
-                {...register(`records.${index}.title`)}
+                {...register(`languages.records.${index}.title`)}
               />
             </div>
           );

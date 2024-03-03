@@ -5,25 +5,23 @@ import { Input } from "@/components/ui/input";
 import { EditorResume } from "@/lib/types/editor/EditorResume";
 import { cn } from "@/lib/utils";
 import { memo } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
 import { useEditor } from "../editorContext";
 
 const SkillReorderedGrid = () => {
-  const { resume, sectionConfig } = useEditor();
+  const { sectionConfig } = useEditor();
 
-  const { register, control } = useForm<EditorResume["skills"]>({
-    defaultValues: resume.skills,
-  });
+  const { register, control } = useFormContext<EditorResume>();
   const { append, move, fields, remove } = useFieldArray({
     control,
-    name: "records",
+    name: "skills.records",
   });
 
   if (!sectionConfig.skills) return null;
 
   return (
     <DottedLineBox className="flex flex-col gap-2">
-      <Input placeholder="SKILLS" isTitle {...register("title")} />
+      <Input placeholder="SKILLS" isTitle {...register("skills.title")} />
 
       <ReorderedList
         type="grid"
@@ -47,7 +45,7 @@ const SkillReorderedGrid = () => {
               <Input
                 placeholder="Enter your skill"
                 className="bg-gray-100 px-2 py-1 text-sm"
-                {...register(`records.${index}.title`)}
+                {...register(`skills.records.${index}.title`)}
               />
             </div>
           );

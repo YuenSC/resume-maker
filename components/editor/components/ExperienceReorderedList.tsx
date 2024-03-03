@@ -1,3 +1,4 @@
+import DottedLineBox from "@/components/DottedLineBox";
 import ReorderListControl from "@/components/ReorderListControl";
 import ReorderedList from "@/components/ReorderedList";
 import { Input } from "@/components/ui/input";
@@ -9,25 +10,18 @@ import {
   Controller,
   FormProvider,
   useFieldArray,
-  useForm,
+  useFormContext,
 } from "react-hook-form";
 import { useEditor } from "../editorContext";
-import DottedLineBox from "@/components/DottedLineBox";
 
 const ExperienceReorderedList = () => {
-  const {
-    resume: { workExperiences },
-    setResume,
-    sectionConfig,
-  } = useEditor();
+  const { sectionConfig } = useEditor();
 
-  const form = useForm<EditorResume["workExperiences"]>({
-    defaultValues: workExperiences,
-  });
+  const form = useFormContext<EditorResume>();
   const { register, control } = form;
   const { fields, append, remove, move } = useFieldArray({
     control,
-    name: "records",
+    name: "workExperiences.records",
   });
 
   if (!sectionConfig.workExperience) return null;
@@ -35,7 +29,11 @@ const ExperienceReorderedList = () => {
   return (
     <FormProvider {...form}>
       <div>
-        <Input placeholder="EXPERIENCE" isTitle {...register("title")} />
+        <Input
+          placeholder="EXPERIENCE"
+          isTitle
+          {...register("workExperiences.title")}
+        />
         <ReorderedList
           items={fields}
           onReorder={(oldIndex, newIndex) => move(oldIndex, newIndex)}
@@ -77,14 +75,14 @@ const ExperienceReorderedList = () => {
                   placeholder="Employer"
                   isTitle
                   className="text-primary placeholder:text-primary"
-                  {...register(`records.${index}.title`)}
+                  {...register(`workExperiences.records.${index}.title`)}
                 />
                 <div className="flex">
                   <Input
                     placeholder="POSITION"
                     className="font-medium"
                     isTitle
-                    {...register(`records.${index}.position`)}
+                    {...register(`workExperiences.records.${index}.position`)}
                   />
                   <Controller
                     name={`records.${index}.duration`}
@@ -99,7 +97,7 @@ const ExperienceReorderedList = () => {
                   />
                 </div>
                 <Controller
-                  name={`records.${index}.description`}
+                  name={`workExperiences.records.${index}.description`}
                   control={control}
                   render={({ field }) => {
                     return (

@@ -8,16 +8,22 @@ import { MdEmail, MdOutlineWebAsset } from "react-icons/md";
 import { useEditor } from "../editorContext";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
+import { useController, useFormContext } from "react-hook-form";
+import { EditorResume } from "@/lib/types/editor/EditorResume";
+import { register } from "module";
 
 const IconInput = ({
+  name,
   personalDetailKey,
-  onChange,
-  value,
 }: {
+  name: string;
   personalDetailKey: EditorPersonalDetailEnum;
-  value: string;
-  onChange: (text: string) => void;
 }) => {
+  const { register } = useFormContext<EditorResume>();
+  const { field } = useController({
+    name,
+  });
+
   const { Icon, placeholder } = useMemo(() => {
     switch (personalDetailKey) {
       case EditorPersonalDetailEnum.email:
@@ -38,24 +44,30 @@ const IconInput = ({
       case EditorPersonalDetailEnum.location:
       case EditorPersonalDetailEnum.phone:
         return (
-          <p className="whitespace-pre-line break-all p-2 text-sm ">{value}</p>
+          <p className="whitespace-pre-line break-all p-2 text-sm ">
+            {field.value || placeholder}
+          </p>
         );
 
       case EditorPersonalDetailEnum.email:
         return (
-          <Link href={`mailto:${value}`}>
-            <p className="break-all p-2 text-sm">{value}</p>
+          <Link href={`mailto:${field.value}`}>
+            <p className="break-all p-2 text-sm">
+              {field.value || placeholder}
+            </p>
           </Link>
         );
       case EditorPersonalDetailEnum.linkedin:
       case EditorPersonalDetailEnum.website:
         return (
-          <Link href={value}>
-            <p className="break-all p-2 text-sm">{value}</p>
+          <Link href={field.value}>
+            <p className="break-all p-2 text-sm">
+              {field.value || placeholder}
+            </p>
           </Link>
         );
     }
-  }, [personalDetailKey, value]);
+  }, [field.value, personalDetailKey, placeholder]);
 
   return (
     <div className="flex gap-2">
@@ -64,10 +76,9 @@ const IconInput = ({
       </div>
       <div className="min-h-9 flex-1">
         <Textarea
-          value={value}
           className="h-9 break-all text-sm print:hidden"
-          onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
+          {...field}
         />
 
         <div className="hidden print:block">{printElement}</div>
@@ -77,11 +88,9 @@ const IconInput = ({
 };
 
 const PersonalDetail = () => {
-  const {
-    resume: { personalDetails },
-    setResume,
-    sectionConfig,
-  } = useEditor();
+  const { register } = useFormContext<EditorResume>();
+
+  const { sectionConfig } = useEditor();
 
   const isAllFieldsHidden = Object.entries(sectionConfig.personalDetails).every(
     ([key, shown]) => !shown,
@@ -95,16 +104,7 @@ const PersonalDetail = () => {
         placeholder="PERSONAL DETAILS"
         isTitle
         className="mb-4"
-        value={personalDetails.title}
-        onChange={(e) =>
-          setResume((prev) => ({
-            ...prev,
-            aboutMe: {
-              ...prev.aboutMe,
-              title: e.target.value,
-            },
-          }))
-        }
+        {...register("personalDetails.title")}
       />
       <div className="ml-2 flex flex-col gap-1">
         {Object.keys(EditorPersonalDetailEnum).map((key) => {
@@ -115,16 +115,7 @@ const PersonalDetail = () => {
             <IconInput
               key={key}
               personalDetailKey={key as EditorPersonalDetailEnum}
-              value={personalDetails[key as EditorPersonalDetailEnum]}
-              onChange={(text) =>
-                setResume((prev) => ({
-                  ...prev,
-                  personalDetails: {
-                    ...prev.personalDetails,
-                    [key]: text,
-                  },
-                }))
-              }
+              name={`personalDetails.${key}`}
             />
           );
         })}

@@ -17,7 +17,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     React.useImperativeHandle(outerRef, () => innerRef.current!, []);
 
     return (
-      <span
+      <input
         aria-placeholder={placeholder}
         contentEditable
         className={cn(
@@ -26,13 +26,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           isTitle && "font-semibold text-black placeholder:text-black",
           className,
         )}
+        placeholder={placeholder}
         ref={innerRef}
         {...props}
-        onChange={() => {
-          if (innerRef.current && !innerRef.current.innerHTML) {
-            innerRef.current.innerHTML = placeholder || "";
-          }
-        }}
       />
     );
   },

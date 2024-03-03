@@ -2,34 +2,26 @@ import { Input } from "@/components/ui/input";
 import { memo } from "react";
 import { useEditor } from "../editorContext";
 import { Textarea } from "@/components/ui/textarea";
+import { useFormContext } from "react-hook-form";
+import { EditorResume } from "@/lib/types/editor/EditorResume";
 
 const NameInput = () => {
-  const {
-    resume: { role, name },
-    setResume,
-    sectionConfig,
-  } = useEditor();
+  const { register } = useFormContext<EditorResume>();
+  const { sectionConfig } = useEditor();
 
   return (
     <div className="flex-1">
       <Textarea
-        value={name}
-        isTitle
         placeholder="Your Name"
         className="text-6xl font-semibold text-primary"
         rows={1}
-        onChange={(e) =>
-          setResume((prev) => ({ ...prev, name: e.target.value }))
-        }
+        {...register("name")}
       />
       {sectionConfig.role && (
         <Input
-          value={role}
           placeholder="Your Role"
           className="px-2.5"
-          onChange={(e) =>
-            setResume((prev) => ({ ...prev, role: e.target.value }))
-          }
+          {...register("role")}
         />
       )}
     </div>
