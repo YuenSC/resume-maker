@@ -21,6 +21,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Toaster />
       </body>
+      {/* https://analytics.google.com/analytics/web/#/a238846227p328978317/admin/account/create */}
       <GoogleAnalytics gaId="G-84NGE1TSPX" />
     </html>
   );

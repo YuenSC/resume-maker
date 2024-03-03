@@ -106,6 +106,7 @@ type IEditorContext = {
   setSectionConfig: Dispatch<SetStateAction<EditorSectionConfig>>;
   typography: AvailableFontKeyEnum;
   setTypography: Dispatch<SetStateAction<AvailableFontKeyEnum>>;
+  reset: () => void;
 };
 
 const editorContext = createContext<IEditorContext>({
@@ -113,6 +114,7 @@ const editorContext = createContext<IEditorContext>({
   setSectionConfig: () => undefined,
   typography: AvailableFontKeyEnum.inter,
   setTypography: () => undefined,
+  reset: () => undefined,
 });
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
@@ -134,7 +136,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     defaultValues: editorResume,
     mode: "onBlur",
   });
-  const { handleSubmit, getValues } = form;
+  const { handleSubmit, getValues, reset } = form;
   const onSubmit: SubmitHandler<EditorResume> = useCallback(
     (values) => {
       setEditorResume(values);
@@ -157,8 +159,22 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       setSectionConfig,
       typography,
       setTypography,
+      reset: () => {
+        setSectionConfig(defaultSectionConfig);
+        setTypography(AvailableFontKeyEnum.inter);
+        setEditorResume(defaultResume);
+        reset(defaultResume);
+      },
     }),
-    [handlePrint, sectionConfig, setSectionConfig, setTypography, typography],
+    [
+      handlePrint,
+      reset,
+      sectionConfig,
+      setEditorResume,
+      setSectionConfig,
+      setTypography,
+      typography,
+    ],
   );
 
   return (

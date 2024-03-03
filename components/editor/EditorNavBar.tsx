@@ -19,6 +19,18 @@ import { AvailableFontKeyEnum, AvailableFonts } from "@/lib/fonts";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
 import { SelectValue } from "../ui/select";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
 const switchSections = [
   {
     title: "Personal Details",
@@ -91,6 +103,7 @@ const EditorNavBar = () => {
     sectionConfig,
     typography,
     setTypography,
+    reset,
   } = useEditor();
 
   return (
@@ -173,7 +186,24 @@ const EditorNavBar = () => {
         </Popover>
       </div>
       {/* Download Control */}
-      <div>
+      <div className="flex gap-4">
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <Button variant="destructive">Reset</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Warning</AlertDialogTitle>
+              <AlertDialogDescription>
+                Your data will be deleted permanently. Are you sure to continue?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={reset}>Reset</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
         <Button onClick={handlePrint}>Print</Button>
       </div>
     </div>
