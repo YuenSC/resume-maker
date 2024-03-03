@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -20,6 +21,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Toaster />
       </body>
+      <GoogleAnalytics gaId="G-84NGE1TSPX" />
     </html>
   );
 }
