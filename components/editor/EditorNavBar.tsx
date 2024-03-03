@@ -108,7 +108,7 @@ const EditorNavBar = () => {
           </PopoverTrigger>
           <PopoverContent className="rounded-lg bg-white p-4 text-black shadow-lg">
             <PopoverArrow className="text-white" fill="white" />
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               <Label className="text-xs">Font</Label>
               <Select
                 defaultValue={typography}

@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { ReactNode, memo, useEffect, useState } from "react";
 import { EditorProvider } from "./editorContext";
 import Link from "next/link";
+import Config from "@/lib/Config";
 
 type EditorContainerProps = {
   children: ReactNode;
@@ -29,7 +30,7 @@ const EditorContainer = ({ children, className }: EditorContainerProps) => {
 
   return (
     <EditorProvider>
-      <AlertDialog open={open}>
+      <AlertDialog open={open && !Config.isDev}>
         <AlertDialogContent onEscapeKeyDown={() => setOpen(false)}>
           <AlertDialogHeader>
             <AlertDialogTitle>Warning</AlertDialogTitle>
