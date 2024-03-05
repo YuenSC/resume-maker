@@ -71,7 +71,6 @@ const ExperienceReorderedList = () => {
                 />
 
                 <Input
-                  autoFocus
                   placeholder="Employer"
                   isTitle
                   className="text-primary placeholder:text-primary"

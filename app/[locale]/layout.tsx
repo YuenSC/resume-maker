@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import "./globals.css";
 import { AvailableFonts, poppins } from "@/lib/fonts";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 
 export const metadata: Metadata = {
   title: "Resume Creator | Calvin Yuen",
@@ -12,14 +13,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  const messages = useMessages();
+
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang={params.locale} className={poppins.className}>
       <body>
-        <main>{children}</main>
-        <Toaster />
+        <NextIntlClientProvider locale={params.locale} messages={messages}>
+          <main>{children}</main>
+          <Toaster />
+        </NextIntlClientProvider>
       </body>
       {/* https://analytics.google.com/analytics/web/#/a238846227p328978317/admin/account/create */}
       <GoogleAnalytics gaId="G-84NGE1TSPX" />

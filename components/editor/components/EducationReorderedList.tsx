@@ -69,7 +69,6 @@ const EducationReorderedList = () => {
                 />
 
                 <Input
-                  autoFocus
                   placeholder="School"
                   isTitle
                   className="text-primary placeholder:text-primary"

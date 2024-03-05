@@ -5,11 +5,21 @@ import {
   PopoverArrow,
   PopoverContent,
   PopoverTrigger,
-} from "@radix-ui/react-popover";
+} from "../ui/popover";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+} from "@/components/ui/dropdown-menu";
 import { memo, useEffect } from "react";
 import { CiSettings } from "react-icons/ci";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { Label } from "../ui/label";
 import { Switch } from "../ui/switch";
 import { useEditor } from "./editorContext";
@@ -30,6 +40,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { LanguagesIcon } from "lucide-react";
+import { useParams } from "next/navigation";
+import { locales, useRouter } from "@/lib/i18n";
+import { useTranslations } from "next-intl";
 
 const switchSections = [
   {
@@ -105,6 +119,11 @@ const EditorNavBar = () => {
     setTypography,
     reset,
   } = useEditor();
+
+  const params = useParams<{ locale: string }>();
+
+  const t = useTranslations("i18n");
+  const router = useRouter();
 
   return (
     <div className="fixed z-50 flex w-[calc(100vw-2.5rem)] min-w-[calc(1024px-2.5rem)] items-center justify-between rounded-xl bg-black px-4 py-2 text-sm text-white">
@@ -187,9 +206,34 @@ const EditorNavBar = () => {
       </div>
       {/* Download Control */}
       <div className="flex gap-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="flex items-center justify-center gap-2">
+            <LanguagesIcon size={16} />
+            <p>{params.locale}</p>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="text-black">
+            <DropdownMenuLabel>Languages</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuRadioGroup
+              value={params.locale}
+              onValueChange={(locale) => {
+                router.replace(`./${locale}`);
+              }}
+            >
+              {locales.map((locale) => (
+                <DropdownMenuRadioItem key={locale} value={locale}>
+                  {t(locale)}
+                </DropdownMenuRadioItem>
+              ))}
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
         <AlertDialog>
-          <AlertDialogTrigger>
-            <Button variant="destructive">Reset</Button>
+          <AlertDialogTrigger
+            className={buttonVariants({ variant: "destructive" })}
+          >
+            Reset
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>

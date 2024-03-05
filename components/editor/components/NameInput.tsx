@@ -12,6 +12,7 @@ const NameInput = () => {
   return (
     <div className="flex-1">
       <Textarea
+        autoFocus
         placeholder="Your Name"
         className="text-6xl font-semibold text-primary"
         rows={1}
