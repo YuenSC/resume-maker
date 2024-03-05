@@ -1,10 +1,10 @@
 {
-  "i18n": {
-    "ja": "日本語",
-    "zh": "繁體中文",
-    "en": "English"
-  },
   "control": {
-    "typography": "Typography"
+    "typography": "Font Family"
+  },
+  "i18n": {
+    "en": "English",
+    "ja": "日本語",
+    "zh-HK": "繁體中文"
   }
 }

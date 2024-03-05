@@ -3,7 +3,7 @@ import { getRequestConfig } from "next-intl/server";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 
 // Can be imported from a shared config
-export const locales = ["en", "zh", "ja"];
+export const locales = ["en", "zh-HK", "ja"];
 export const localePrefix = "always"; // Default
 
 export default getRequestConfig(async ({ locale }) => {
