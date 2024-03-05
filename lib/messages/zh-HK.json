@@ -1,5 +1,6 @@
 {
   "control": {
+    "languages": "語言",
     "print": "列印",
     "reset": "重置",
     "reset-warning": "您的資料將會永久刪除。\n您確定要繼續嗎？",

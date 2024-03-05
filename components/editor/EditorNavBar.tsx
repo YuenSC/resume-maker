@@ -129,7 +129,7 @@ const EditorNavBar = () => {
     <div className="fixed z-50 flex w-[calc(100vw-2.5rem)] min-w-[calc(1024px-2.5rem)] items-center justify-between rounded-xl bg-black px-4 py-2 text-sm text-white">
       <div>{t("title")}</div>
       {/* UI Controls */}
-      <div className="flex items-center gap-4">
+      <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-4 ">
         <Popover>
           <PopoverTrigger>
             <div className="group flex items-center">

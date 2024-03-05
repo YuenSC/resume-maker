@@ -1,5 +1,6 @@
 {
   "control": {
+    "languages": "言語",
     "print": "印刷する",
     "reset": "リセット",
     "reset-warning": "データは完全に削除されます。\n続けてもよろしいですか?",
