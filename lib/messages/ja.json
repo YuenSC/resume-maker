@@ -1,10 +1,56 @@
 {
   "control": {
+    "print": "印刷する",
+    "reset": "リセット",
+    "reset-warning": "データは完全に削除されます。\n続けてもよろしいですか?",
+    "sections": "セクション構成",
     "typography": "フォント"
+  },
+  "editor": {
+    "about-me": "私について",
+    "enter-your-professional-summary": "専門的な概要を入力してください"
+  },
+  "education": {
+    "degree": "程度",
+    "from-until": "から - まで",
+    "school": "学校",
+    "title": "教育"
+  },
+  "experience": {
+    "employer": "雇用者",
+    "enter-your-work-experience-description": "職歴の説明を入力してください",
+    "from-until": "から - まで",
+    "position": "位置",
+    "title": "経験"
   },
   "i18n": {
     "en": "English",
     "ja": "日本語",
     "zh-HK": "繁體中文"
-  }
+  },
+  "language": {
+    "enter-your-language": "言語を入力してください",
+    "title": "言語"
+  },
+  "name": {
+    "your-name": "あなたの名前",
+    "your-role": "あなたの役割"
+  },
+  "personalDetails": {
+    "enter-email": "メールアドレスを入力して",
+    "enter-linkedin-url": "リンクされた URL を入力してください",
+    "enter-location": "場所を入力してください",
+    "enter-phone": "電話番号を入力してください",
+    "enter-website": "ウェブサイトに入る",
+    "personal-details": "個人の詳細"
+  },
+  "photo": {
+    "no-profile-image-uploaded": "プロフィール画像がアップロードされていません",
+    "upload-your-photo": "写真をアップロードする"
+  },
+  "skill": {
+    "enter-your-skill": "スキルを入力してください",
+    "skills": "スキル"
+  },
+  "title": "履歴書作成者"
 }

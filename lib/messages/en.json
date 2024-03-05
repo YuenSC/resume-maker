@@ -1,10 +1,57 @@
 {
   "control": {
+    "languages": "Languages",
+    "print": "Print",
+    "reset": "Reset",
+    "reset-warning": "Your data will be deleted permanently. Are you sure to continue?",
+    "sections": "Sections Configuration",
     "typography": "Font Family"
+  },
+  "editor": {
+    "about-me": "ABOUT ME",
+    "enter-your-professional-summary": "Enter your professional summary"
+  },
+  "education": {
+    "degree": "DEGREE",
+    "from-until": "From - Until",
+    "school": "School",
+    "title": "EDUCATION"
+  },
+  "experience": {
+    "employer": "Employer",
+    "enter-your-work-experience-description": "Enter your work experience description",
+    "from-until": "From - Until",
+    "position": "POSITION",
+    "title": "EXPERIENCE"
   },
   "i18n": {
     "en": "English",
     "ja": "日本語",
     "zh-HK": "繁體中文"
-  }
+  },
+  "language": {
+    "enter-your-language": "Enter your language",
+    "title": "LANGUAGES"
+  },
+  "name": {
+    "your-name": "Your Name",
+    "your-role": "Your Role"
+  },
+  "personalDetails": {
+    "enter-email": "Enter email",
+    "enter-linkedin-url": "Enter linkedin URL",
+    "enter-location": "Enter Location",
+    "enter-phone": "Enter phone",
+    "enter-website": "Enter Website",
+    "personal-details": "PERSONAL DETAILS"
+  },
+  "photo": {
+    "no-profile-image-uploaded": "No profile image uploaded",
+    "upload-your-photo": "Upload your photo"
+  },
+  "skill": {
+    "enter-your-skill": "Enter your skill",
+    "skills": "SKILLS"
+  },
+  "title": "ResumeCreator"
 }

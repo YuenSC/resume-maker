@@ -7,9 +7,12 @@ import { cn } from "@/lib/utils";
 import { memo } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { useEditor } from "../editorContext";
+import { useTranslations } from "next-intl";
 
 const SkillReorderedGrid = () => {
   const { sectionConfig } = useEditor();
+
+  const t = useTranslations("skill");
 
   const { register, control } = useFormContext<EditorResume>();
   const { append, move, fields, remove } = useFieldArray({
@@ -21,7 +24,7 @@ const SkillReorderedGrid = () => {
 
   return (
     <DottedLineBox className="flex flex-col gap-2">
-      <Input placeholder="SKILLS" isTitle {...register("skills.title")} />
+      <Input placeholder={t("skills")} isTitle {...register("skills.title")} />
 
       <ReorderedList
         type="grid"
@@ -43,7 +46,7 @@ const SkillReorderedGrid = () => {
                 reorderListeners={listeners}
               />
               <Input
-                placeholder="Enter your skill"
+                placeholder={t("enter-your-skill")}
                 className="bg-gray-100 px-2 py-1 text-sm"
                 {...register(`skills.records.${index}.title`)}
               />

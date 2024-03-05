@@ -13,6 +13,7 @@ import {
   useFormContext,
 } from "react-hook-form";
 import { useEditor } from "../editorContext";
+import { useTranslations } from "next-intl";
 
 const ExperienceReorderedList = () => {
   const { sectionConfig } = useEditor();
@@ -24,13 +25,15 @@ const ExperienceReorderedList = () => {
     name: "workExperiences.records",
   });
 
+  const t = useTranslations("experience");
+
   if (!sectionConfig.workExperience) return null;
 
   return (
     <FormProvider {...form}>
       <div>
         <Input
-          placeholder="EXPERIENCE"
+          placeholder={t("title")}
           isTitle
           {...register("workExperiences.title")}
         />
@@ -71,14 +74,14 @@ const ExperienceReorderedList = () => {
                 />
 
                 <Input
-                  placeholder="Employer"
+                  placeholder={t("employer")}
                   isTitle
                   className="text-primary placeholder:text-primary"
                   {...register(`workExperiences.records.${index}.title`)}
                 />
                 <div className="flex">
                   <Input
-                    placeholder="POSITION"
+                    placeholder={t("position")}
                     className="font-medium"
                     isTitle
                     {...register(`workExperiences.records.${index}.position`)}
@@ -89,7 +92,7 @@ const ExperienceReorderedList = () => {
                       <Input
                         contentEditable
                         className="flex w-fit font-light"
-                        placeholder="From - Until"
+                        placeholder={t("from-until")}
                         {...field}
                       />
                     )}
@@ -103,7 +106,9 @@ const ExperienceReorderedList = () => {
                       <Textarea
                         {...field}
                         className="h-6 py-0 text-base"
-                        placeholder="Enter your work experience description"
+                        placeholder={t(
+                          "enter-your-work-experience-description",
+                        )}
                       />
                     );
                   }}

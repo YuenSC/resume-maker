@@ -7,6 +7,7 @@ import { memo, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useController } from "react-hook-form";
 import { useEditor } from "../editorContext";
+import { useTranslations } from "next-intl";
 
 const toBase64: (file: File) => Promise<string> = (file) =>
   new Promise<string>((resolve, reject) => {
@@ -22,6 +23,8 @@ const toBase64: (file: File) => Promise<string> = (file) =>
 const PhotoUpload = () => {
   const { toast } = useToast();
 
+  const t = useTranslations("photo");
+
   const { sectionConfig } = useEditor();
   const {
     field: { value: photo, onChange },
@@ -34,7 +37,7 @@ const PhotoUpload = () => {
       const imageFile = acceptedFiles[0];
       if (!imageFile) {
         toast({
-          title: "No profile image uploaded",
+          title: t("no-profile-image-uploaded"),
           variant: "destructive",
         });
         return;
@@ -46,13 +49,13 @@ const PhotoUpload = () => {
       } catch (error) {
         console.log("error", error);
         toast({
-          title: "No profile image uploaded",
+          title: t("no-profile-image-uploaded"),
           description: error as string,
           variant: "destructive",
         });
       }
     },
-    [onChange, toast],
+    [onChange, t, toast],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -82,7 +85,7 @@ const PhotoUpload = () => {
         ) : (
           <>
             <UploadIcon />
-            <p className="text-sm">Upload your photo</p>
+            <p className="text-sm">{t("upload-your-photo")}</p>
           </>
         )}
       </div>

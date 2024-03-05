@@ -23,6 +23,7 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-toast": "^1.1.5",
     "@react-pdf/renderer": "^3.3.8",
+    "@react-spring/web": "^9.7.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lodash": "^4.17.21",
