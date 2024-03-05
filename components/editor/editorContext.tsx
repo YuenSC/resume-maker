@@ -42,11 +42,11 @@ const defaultResume: EditorResume = {
   name: "",
   role: "",
   aboutMe: {
-    title: "About Me",
+    title: "",
     value: "",
   },
   personalDetails: {
-    title: "Personal Details",
+    title: "",
     location: "",
     phone: "",
     email: "",

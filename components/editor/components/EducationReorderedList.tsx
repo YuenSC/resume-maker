@@ -12,6 +12,7 @@ import {
   useFormContext,
 } from "react-hook-form";
 import { useEditor } from "../editorContext";
+import { useTranslations } from "next-intl";
 
 const EducationReorderedList = () => {
   const { sectionConfig } = useEditor();
@@ -23,13 +24,15 @@ const EducationReorderedList = () => {
     name: "education.records",
   });
 
+  const t = useTranslations("education");
+
   if (!sectionConfig.education) return null;
 
   return (
     <FormProvider {...form}>
       <div>
         <Input
-          placeholder="EDUCATION"
+          placeholder={t("title")}
           className="px-2"
           isTitle
           {...register("education.title")}
@@ -69,21 +72,20 @@ const EducationReorderedList = () => {
                 />
 
                 <Input
-                  autoFocus
-                  placeholder="School"
+                  placeholder={t("school")}
                   isTitle
                   className="text-primary placeholder:text-primary"
                   {...register(`education.records.${index}.school`)}
                 />
                 <div className="flex">
                   <Input
-                    placeholder="DEGREE"
+                    placeholder={t("degree")}
                     className="font-medium"
                     isTitle
                     {...register(`education.records.${index}.degree`)}
                   />
                   <Input
-                    placeholder="From - Until"
+                    placeholder={t("from-until")}
                     isTitle
                     className="flex w-fit font-light"
                     {...register(`education.records.${index}.duration`)}

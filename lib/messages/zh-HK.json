@@ -1,0 +1,57 @@
+{
+  "control": {
+    "languages": "語言",
+    "print": "列印",
+    "reset": "重置",
+    "reset-warning": "您的資料將會永久刪除。\n您確定要繼續嗎？",
+    "sections": "部分配置",
+    "typography": "字體"
+  },
+  "editor": {
+    "about-me": "關於我",
+    "enter-your-professional-summary": "輸入您的專業摘要"
+  },
+  "education": {
+    "degree": "程度",
+    "from-until": "從 - 直到",
+    "school": "學校",
+    "title": "教育"
+  },
+  "experience": {
+    "employer": "雇主",
+    "enter-your-work-experience-description": "輸入您的工作經驗描述",
+    "from-until": "從 - 直到",
+    "position": "位置",
+    "title": "經驗"
+  },
+  "i18n": {
+    "en": "English",
+    "ja": "日本語",
+    "zh-HK": "繁體中文"
+  },
+  "language": {
+    "enter-your-language": "輸入您的語言",
+    "title": "語言"
+  },
+  "name": {
+    "your-name": "你的名字",
+    "your-role": "你的角色"
+  },
+  "personalDetails": {
+    "enter-email": "輸入電子郵件",
+    "enter-linkedin-url": "輸入 LinkedIn 網址",
+    "enter-location": "輸入位置",
+    "enter-phone": "輸入電話",
+    "enter-website": "輸入網站",
+    "personal-details": "個人資料"
+  },
+  "photo": {
+    "no-profile-image-uploaded": "未上傳個人資料圖片",
+    "upload-your-photo": "上傳你的照片"
+  },
+  "skill": {
+    "enter-your-skill": "輸入你的技能",
+    "skills": "技能"
+  },
+  "title": "履歷創建者"
+}

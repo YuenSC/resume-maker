@@ -1,16 +1,16 @@
 import DottedLineBox from "@/components/DottedLineBox";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { EditorPersonalDetailEnum } from "@/lib/types/editor/EditorPersonalDetailEnum";
+import { EditorResume } from "@/lib/types/editor/EditorResume";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { memo, useMemo } from "react";
+import { useController, useFormContext } from "react-hook-form";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaLinkedin, FaLocationDot } from "react-icons/fa6";
 import { MdEmail, MdOutlineWebAsset } from "react-icons/md";
 import { useEditor } from "../editorContext";
-import { Textarea } from "@/components/ui/textarea";
-import Link from "next/link";
-import { useController, useFormContext } from "react-hook-form";
-import { EditorResume } from "@/lib/types/editor/EditorResume";
-import { register } from "module";
 
 const IconInput = ({
   name,
@@ -19,7 +19,8 @@ const IconInput = ({
   name: string;
   personalDetailKey: EditorPersonalDetailEnum;
 }) => {
-  const { register } = useFormContext<EditorResume>();
+  const t = useTranslations("personalDetails");
+
   const { field } = useController({
     name,
   });
@@ -27,17 +28,17 @@ const IconInput = ({
   const { Icon, placeholder } = useMemo(() => {
     switch (personalDetailKey) {
       case EditorPersonalDetailEnum.email:
-        return { Icon: MdEmail, placeholder: "Enter email" };
+        return { Icon: MdEmail, placeholder: t("enter-email") };
       case EditorPersonalDetailEnum.linkedin:
-        return { Icon: FaLinkedin, placeholder: "Enter linkedin URL" };
+        return { Icon: FaLinkedin, placeholder: t("enter-linkedin-url") };
       case EditorPersonalDetailEnum.location:
-        return { Icon: FaLocationDot, placeholder: "Enter Location" };
+        return { Icon: FaLocationDot, placeholder: t("enter-location") };
       case EditorPersonalDetailEnum.phone:
-        return { Icon: FaPhoneAlt, placeholder: "Enter phone" };
+        return { Icon: FaPhoneAlt, placeholder: t("enter-phone") };
       case EditorPersonalDetailEnum.website:
-        return { Icon: MdOutlineWebAsset, placeholder: "Enter Website" };
+        return { Icon: MdOutlineWebAsset, placeholder: t("enter-website") };
     }
-  }, [personalDetailKey]);
+  }, [personalDetailKey, t]);
 
   const printElement = useMemo(() => {
     switch (personalDetailKey) {
@@ -96,12 +97,14 @@ const PersonalDetail = () => {
     ([key, shown]) => !shown,
   );
 
+  const t = useTranslations("personalDetails");
+
   if (!sectionConfig.personalDetails || isAllFieldsHidden) return null;
 
   return (
     <DottedLineBox>
       <Input
-        placeholder="PERSONAL DETAILS"
+        placeholder={t("personal-details")}
         isTitle
         className="mb-4"
         {...register("personalDetails.title")}

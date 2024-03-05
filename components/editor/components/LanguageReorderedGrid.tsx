@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { memo } from "react";
 import { useFieldArray, useForm, useFormContext } from "react-hook-form";
 import { useEditor } from "../editorContext";
+import { useTranslations } from "next-intl";
 
 const LanguageReorderedGrid = () => {
   const { sectionConfig } = useEditor();
@@ -17,11 +18,17 @@ const LanguageReorderedGrid = () => {
     name: "languages.records",
   });
 
+  const t = useTranslations("language");
+
   if (!sectionConfig.skills) return null;
 
   return (
     <DottedLineBox className="flex flex-col gap-2">
-      <Input placeholder="LANGUAGES" isTitle {...register("languages.title")} />
+      <Input
+        placeholder={t("title")}
+        isTitle
+        {...register("languages.title")}
+      />
 
       <ReorderedList
         type="grid"
@@ -43,7 +50,7 @@ const LanguageReorderedGrid = () => {
                 reorderListeners={listeners}
               />
               <Input
-                placeholder="Enter your language"
+                placeholder={t("enter-your-language")}
                 className="bg-gray-100 px-2 py-1 text-sm"
                 {...register(`languages.records.${index}.title`)}
               />
