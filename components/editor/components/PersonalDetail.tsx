@@ -61,7 +61,9 @@ const IconInput = ({
       case EditorPersonalDetailEnum.linkedin:
       case EditorPersonalDetailEnum.website:
         return (
-          <Link href={field.value}>
+          <Link
+            href={field.value ?? "https://portfolio-calvin-yuen.vercel.app/"}
+          >
             <p className="break-all p-2 text-sm">
               {field.value || placeholder}
             </p>

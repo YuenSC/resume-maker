@@ -122,6 +122,7 @@ const EditorNavBar = () => {
     typography,
     setTypography,
     reset,
+    resetTemplate,
   } = useEditor();
 
   const params = useParams<{ locale: string }>();
@@ -252,6 +253,9 @@ const EditorNavBar = () => {
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction onClick={reset}>
                 {t("control.reset")}
+              </AlertDialogAction>
+              <AlertDialogAction onClick={resetTemplate}>
+                {t("control.check-resume-template")}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>

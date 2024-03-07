@@ -1,6 +1,7 @@
 import { AvailableFontKeyEnum } from "@/lib/fonts";
 import { EditorResume } from "@/lib/types/editor/EditorResume";
 import { EditorSectionConfig } from "@/lib/types/editor/EditorSectionConfig";
+import { generateRandomId } from "@/lib/utils";
 import {
   Dispatch,
   MutableRefObject,
@@ -16,7 +17,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useReactToPrint } from "react-to-print";
 import { useLocalStorage } from "usehooks-ts";
 
-const defaultSectionConfig: EditorSectionConfig = {
+const emptySectionConfig: EditorSectionConfig = {
   personalDetails: {
     location: true,
     phone: true,
@@ -25,6 +26,25 @@ const defaultSectionConfig: EditorSectionConfig = {
     linkedin: true,
   },
   photo: true,
+  aboutMe: true,
+  role: true,
+  certification: true,
+  workExperience: true,
+  education: true,
+  skills: true,
+  languages: false,
+  hobbies: false,
+};
+
+const defaultSectionConfig: EditorSectionConfig = {
+  personalDetails: {
+    location: true,
+    phone: true,
+    email: true,
+    website: true,
+    linkedin: true,
+  },
+  photo: false,
   aboutMe: true,
   role: true,
   certification: true,
@@ -135,6 +155,66 @@ const defaultResume: EditorResume = {
   },
 };
 
+const emptyResume: EditorResume = {
+  photo: "",
+  name: "",
+  role: "",
+  aboutMe: {
+    title: "",
+    value: "",
+  },
+  personalDetails: {
+    title: "",
+    location: "",
+    phone: "",
+    email: "",
+    website: "",
+    linkedin: "",
+  },
+  workExperiences: {
+    title: "",
+    records: [
+      {
+        id: generateRandomId(),
+        description: "",
+        duration: "",
+        position: "",
+        title: "",
+      },
+      {
+        id: generateRandomId(),
+        description: "",
+        duration: "",
+        position: "",
+        title: "",
+      },
+    ],
+  },
+  education: {
+    title: "",
+    records: [
+      {
+        id: generateRandomId(),
+        school: "",
+        degree: "",
+        duration: "",
+      },
+    ],
+  },
+  skills: {
+    title: "",
+    records: [{ title: "" }],
+  },
+  languages: {
+    title: "",
+    records: [{ title: "" }],
+  },
+  certification: {
+    title: "",
+    value: "",
+  },
+};
+
 type IEditorContext = {
   editorRef?: MutableRefObject<HTMLDivElement | null>;
   handlePrint?: () => void;
@@ -143,6 +223,7 @@ type IEditorContext = {
   typography: AvailableFontKeyEnum;
   setTypography: Dispatch<SetStateAction<AvailableFontKeyEnum>>;
   reset: () => void;
+  resetTemplate: () => void;
 };
 
 const editorContext = createContext<IEditorContext>({
@@ -151,6 +232,7 @@ const editorContext = createContext<IEditorContext>({
   typography: AvailableFontKeyEnum.nunito,
   setTypography: () => undefined,
   reset: () => undefined,
+  resetTemplate: () => undefined,
 });
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
@@ -165,10 +247,8 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
   const [editorResume, setEditorResume] = useLocalStorage<EditorResume>(
     "editor-resume",
-    defaultResume,
+    emptyResume,
   );
-
-  console.log(editorResume);
 
   const form = useForm<EditorResume>({
     defaultValues: editorResume,
@@ -198,8 +278,14 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       typography,
       setTypography,
       reset: () => {
+        setSectionConfig(emptySectionConfig);
+        setTypography(AvailableFontKeyEnum.nunito);
+        setEditorResume(emptyResume);
+        reset(emptyResume);
+      },
+      resetTemplate: () => {
         setSectionConfig(defaultSectionConfig);
-        setTypography(AvailableFontKeyEnum.inter);
+        setTypography(AvailableFontKeyEnum.nunito);
         setEditorResume(defaultResume);
         reset(defaultResume);
       },

@@ -4,6 +4,7 @@
     "enter-your-certification": "Enter your certification"
   },
   "control": {
+    "check-resume-template": "Check author template",
     "languages": "Languages",
     "print": "Print",
     "reset": "Reset",
