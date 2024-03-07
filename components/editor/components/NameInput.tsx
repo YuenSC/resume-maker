@@ -23,7 +23,7 @@ const NameInput = () => {
               innerRef={field.ref}
               onChange={field.onChange}
               placeholder={t("your-name")}
-              className="py-0 text-5xl font-semibold text-primary placeholder:text-primary"
+              className="h-auto py-0 text-5xl font-semibold leading-[1.2] text-primary placeholder:text-primary"
             />
           );
         }}

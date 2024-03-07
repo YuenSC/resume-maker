@@ -1,7 +1,6 @@
 import { AvailableFontKeyEnum } from "@/lib/fonts";
 import { EditorResume } from "@/lib/types/editor/EditorResume";
 import { EditorSectionConfig } from "@/lib/types/editor/EditorSectionConfig";
-import { generateRandomId } from "@/lib/utils";
 import {
   Dispatch,
   MutableRefObject,
@@ -10,10 +9,8 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useRef,
-  useState,
 } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useReactToPrint } from "react-to-print";

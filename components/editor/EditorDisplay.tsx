@@ -24,7 +24,7 @@ const EditorDisplay = () => {
     <div
       ref={editorRef}
       className={cn(
-        "flex aspect-[210/297] w-[1000px] flex-col gap-6 self-center bg-white px-12 py-16 print:w-[900px]",
+        "flex h-[1400px] w-[1000px] flex-col gap-6 self-center bg-white px-12 py-16",
         currentFont?.className,
       )}
     >
@@ -34,7 +34,7 @@ const EditorDisplay = () => {
       </div>
 
       <div className="flex gap-8">
-        <div className="flex w-[27%] flex-col gap-8">
+        <div className="flex w-[28%] flex-col gap-8">
           <AboutMe />
           <PersonalDetail />
         </div>
