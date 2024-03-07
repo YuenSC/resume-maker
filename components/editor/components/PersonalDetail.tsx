@@ -106,7 +106,7 @@ const PersonalDetail = () => {
       <Input
         placeholder={t("personal-details")}
         isTitle
-        className="mb-4"
+        className="mb-2"
         {...register("personalDetails.title")}
       />
       <div className="ml-2 flex flex-col gap-1">

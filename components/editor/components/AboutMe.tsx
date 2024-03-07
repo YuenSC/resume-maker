@@ -22,6 +22,7 @@ const AboutMe = () => {
       <Input
         placeholder={t("about-me")}
         isTitle
+        className="mb-2"
         {...register("aboutMe.title")}
       />
 

@@ -14,6 +14,7 @@ import {
 } from "react-hook-form";
 import { useEditor } from "../editorContext";
 import { useTranslations } from "next-intl";
+import ContentEditable from "@/components/ContentEditable";
 
 const ExperienceReorderedList = () => {
   const { sectionConfig } = useEditor();
@@ -86,16 +87,21 @@ const ExperienceReorderedList = () => {
                     isTitle
                     {...register(`workExperiences.records.${index}.position`)}
                   />
+
                   <Controller
                     name={`records.${index}.duration`}
-                    render={({ field }) => (
-                      <Input
-                        contentEditable
-                        className="flex w-fit font-light"
-                        placeholder={t("from-until")}
-                        {...field}
-                      />
-                    )}
+                    render={({ field }) => {
+                      return (
+                        <ContentEditable
+                          html={field.value}
+                          innerRef={field.ref}
+                          onChange={field.onChange}
+                          placeholder={t("from-until")}
+                          className="font-light"
+                          noNewLine
+                        />
+                      );
+                    }}
                   />
                 </div>
                 <Controller

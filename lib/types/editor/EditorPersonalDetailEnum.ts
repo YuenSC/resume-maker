@@ -1,7 +1,7 @@
 export enum EditorPersonalDetailEnum {
   location = "location",
-  phone = "phone",
   email = "email",
+  phone = "phone",
   website = "website",
   linkedin = "linkedin",
 }

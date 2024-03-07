@@ -6,6 +6,7 @@ import { EditorResume } from "@/lib/types/editor/EditorResume";
 import { cn, generateRandomId } from "@/lib/utils";
 import { memo } from "react";
 import {
+  Controller,
   FormProvider,
   useFieldArray,
   useForm,
@@ -13,6 +14,7 @@ import {
 } from "react-hook-form";
 import { useEditor } from "../editorContext";
 import { useTranslations } from "next-intl";
+import ContentEditable from "@/components/ContentEditable";
 
 const EducationReorderedList = () => {
   const { sectionConfig } = useEditor();
@@ -84,11 +86,21 @@ const EducationReorderedList = () => {
                     isTitle
                     {...register(`education.records.${index}.degree`)}
                   />
-                  <Input
-                    placeholder={t("from-until")}
-                    isTitle
-                    className="flex w-fit font-light"
-                    {...register(`education.records.${index}.duration`)}
+
+                  <Controller
+                    name={`education.records.${index}.duration`}
+                    render={({ field }) => {
+                      return (
+                        <ContentEditable
+                          html={field.value}
+                          innerRef={field.ref}
+                          onChange={field.onChange}
+                          placeholder={t("from-until")}
+                          className="font-light"
+                          noNewLine
+                        />
+                      );
+                    }}
                   />
                 </div>
               </DottedLineBox>
