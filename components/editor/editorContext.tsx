@@ -49,7 +49,7 @@ const defaultResume: EditorResume = {
     location: "Hong Kong",
     phone: "(852) 5168 7161",
     email: "scyuenab@gmail.com",
-    website: "https://portfolio-calvin-yuen.vercel.app/works",
+    website: "https://portfolio-calvin-yuen.vercel.app",
     linkedin: "https://www.linkedin.com/in/sing-chun-yuen-423a09185/",
   },
   workExperiences: {
@@ -59,7 +59,7 @@ const defaultResume: EditorResume = {
         id: "id_1709620409671",
         description:
           '- Actively engaged in the development of numerous features for the mobile app "A.Life" by React Native\n- Developed and implemented multiple features for the "HUMA by AXA" mobile app using React Native.\n- Build the CMS of the "A.Life" and "HUMA by AXA" by Next.js',
-        duration: "2022-2024",
+        duration: "",
         position: "FRONTEND ENGINEER",
         title: "App Bar",
       },
@@ -67,7 +67,7 @@ const defaultResume: EditorResume = {
         id: "id_1709620409671",
         description:
           '- Build the tenant management website of Airside from scratch\n- Develop plenty of features for the school management console named "Compus"',
-        duration: "2021-2022",
+        duration: "",
         position: "WEB DEVELOPER",
         title: "Talkbox Limited",
       },
@@ -84,10 +84,6 @@ const defaultResume: EditorResume = {
         duration: "2017-2021",
       },
     ],
-  },
-  certification: {
-    title: "",
-    value: "",
   },
   skills: {
     title: "",
@@ -131,6 +127,11 @@ const defaultResume: EditorResume = {
         title: "Japanese (JLPT N3)",
       },
     ],
+  },
+  certification: {
+    title: "",
+    value:
+      "- AWS Certified Solution Architect - Associate (2023 JAN)<div>- JLPT N3 (2021 JUL)</div>",
   },
 };
 
