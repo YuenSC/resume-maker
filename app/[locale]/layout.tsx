@@ -2,7 +2,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import "./globals.css";
-import { AvailableFonts, poppins } from "@/lib/fonts";
+import { AvailableFonts, nunito } from "@/lib/fonts";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
   const messages = useMessages();
 
   return (
-    <html lang={params.locale} className={poppins.className}>
+    <html lang={params.locale} className={nunito.className}>
       <body>
         <NextIntlClientProvider locale={params.locale} messages={messages}>
           <main>{children}</main>

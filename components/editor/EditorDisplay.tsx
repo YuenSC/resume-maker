@@ -24,29 +24,27 @@ const EditorDisplay = () => {
     <div
       ref={editorRef}
       className={cn(
-        "grid aspect-[210/297] w-[1000px] gap-8  self-center bg-white p-12 print:w-[900px]",
+        "flex aspect-[210/297] w-[1000px] flex-col gap-8  self-center bg-white p-12 print:w-[900px]",
         currentFont?.className,
       )}
-      style={{
-        gridTemplateColumns: "225px 1fr",
-        gridTemplateRows: sectionConfig.photo ? "225px 1fr" : "5% 1fr",
-      }}
     >
       <div className="col-span-2 flex w-full items-center gap-8">
         <PhotoUpload />
         <NameInput />
       </div>
 
-      <div className="flex flex-col gap-4">
-        <AboutMe />
-        <PersonalDetail />
-      </div>
+      <div className="flex gap-8">
+        <div className="flex flex-col gap-4">
+          <AboutMe />
+          <PersonalDetail />
+        </div>
 
-      <div className="flex flex-col gap-4">
-        <ExperienceReorderedList />
-        <EducationReorderedList />
-        <SkillReorderedGrid />
-        <LanguageReorderedGrid />
+        <div className="flex flex-1 flex-col gap-4 pt-1">
+          <ExperienceReorderedList />
+          <EducationReorderedList />
+          <SkillReorderedGrid />
+          <LanguageReorderedGrid />
+        </div>
       </div>
     </div>
   );

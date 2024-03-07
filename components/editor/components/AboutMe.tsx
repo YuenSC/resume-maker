@@ -3,9 +3,11 @@ import { useEditor } from "../editorContext";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import DottedLineBox from "@/components/DottedLineBox";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { EditorResume } from "@/lib/types/editor/EditorResume";
 import { useTranslations } from "next-intl";
+import ContentEditable from "@/components/ContentEditable";
+import { cn } from "@/lib/utils";
 
 const AboutMe = () => {
   const { register } = useFormContext<EditorResume>();
@@ -16,15 +18,25 @@ const AboutMe = () => {
   if (!sectionConfig.aboutMe) return null;
 
   return (
-    <DottedLineBox>
+    <DottedLineBox className="flex w-full flex-col">
       <Input
         placeholder={t("about-me")}
         isTitle
         {...register("aboutMe.title")}
       />
-      <Textarea
-        placeholder={t("enter-your-professional-summary")}
-        {...register("aboutMe.value")}
+
+      <Controller
+        name="aboutMe.value"
+        render={({ field }) => {
+          return (
+            <ContentEditable
+              html={field.value}
+              innerRef={field.ref}
+              onChange={field.onChange}
+              placeholder={t("enter-your-professional-summary")}
+            />
+          );
+        }}
       />
     </DottedLineBox>
   );

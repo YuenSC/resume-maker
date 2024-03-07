@@ -112,7 +112,7 @@ type IEditorContext = {
 const editorContext = createContext<IEditorContext>({
   sectionConfig: defaultSectionConfig,
   setSectionConfig: () => undefined,
-  typography: AvailableFontKeyEnum.inter,
+  typography: AvailableFontKeyEnum.nunito,
   setTypography: () => undefined,
   reset: () => undefined,
 });
@@ -124,7 +124,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   );
   const [typography, setTypography] = useLocalStorage(
     "editor-typography",
-    AvailableFontKeyEnum.inter,
+    AvailableFontKeyEnum.nunito,
   );
 
   const [editorResume, setEditorResume] = useLocalStorage<EditorResume>(

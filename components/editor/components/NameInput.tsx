@@ -2,9 +2,10 @@ import { Input } from "@/components/ui/input";
 import { memo } from "react";
 import { useEditor } from "../editorContext";
 import { Textarea } from "@/components/ui/textarea";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { EditorResume } from "@/lib/types/editor/EditorResume";
 import { useTranslations } from "next-intl";
+import ContentEditable from "@/components/ContentEditable";
 
 const NameInput = () => {
   const { register } = useFormContext<EditorResume>();
@@ -12,14 +13,22 @@ const NameInput = () => {
   const t = useTranslations("name");
 
   return (
-    <div className="flex-1">
-      <Textarea
-        autoFocus
-        placeholder={t("your-name")}
-        className="text-6xl font-semibold text-primary"
-        rows={1}
-        {...register("name")}
+    <div className="flex w-full flex-col">
+      <Controller
+        name="name"
+        render={({ field }) => {
+          return (
+            <ContentEditable
+              html={field.value}
+              innerRef={field.ref}
+              onChange={field.onChange}
+              placeholder={t("your-name")}
+              className="py-0 text-6xl font-semibold text-primary placeholder:text-primary"
+            />
+          );
+        }}
       />
+
       {sectionConfig.role && (
         <Input
           placeholder={t("your-role")}

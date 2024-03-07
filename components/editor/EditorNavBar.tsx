@@ -148,7 +148,7 @@ const EditorNavBar = () => {
                   setTypography(value as AvailableFontKeyEnum);
                 }}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger>
                   <SelectValue placeholder="Theme" />
                 </SelectTrigger>
                 <SelectContent>
@@ -174,7 +174,7 @@ const EditorNavBar = () => {
               <IoIosArrowDown className="ml-1" size={12} />
             </div>
           </PopoverTrigger>
-          <PopoverContent className="rounded-lg bg-white p-4 text-black shadow-lg">
+          <PopoverContent className="w-auto rounded-lg bg-white p-4 text-black shadow-lg">
             <PopoverArrow className="text-white" fill="white" />
             <div className="grid grid-cols-2">
               {switchSections.map(({ items, title }, index) => (
@@ -182,7 +182,9 @@ const EditorNavBar = () => {
                   key={index}
                   className="flex flex-col justify-start gap-1.5"
                 >
-                  {title && <div>{title}</div>}
+                  {title && (
+                    <div className="h-5 text-sm font-semibold">{title}</div>
+                  )}
                   {items.map((item) => (
                     <div key={item.key} className="flex h-5 items-center gap-2">
                       <Switch
