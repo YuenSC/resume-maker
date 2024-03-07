@@ -36,6 +36,7 @@ const ExperienceReorderedList = () => {
         <Input
           placeholder={t("title")}
           isTitle
+          className="mb-2 px-2"
           {...register("workExperiences.title")}
         />
         <ReorderedList
@@ -47,7 +48,7 @@ const ExperienceReorderedList = () => {
             return (
               <DottedLineBox
                 className={cn(
-                  "group relative flex cursor-auto flex-col gap-1 bg-white pl-8",
+                  "group relative flex cursor-auto flex-col gap-2 bg-white pl-8",
                   isActive && "shadow-xl",
                 )}
               >
@@ -83,7 +84,7 @@ const ExperienceReorderedList = () => {
                 <div className="flex">
                   <Input
                     placeholder={t("position")}
-                    className="font-medium"
+                    className="font-semibold"
                     isTitle
                     {...register(`workExperiences.records.${index}.position`)}
                   />

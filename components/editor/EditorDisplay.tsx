@@ -34,12 +34,12 @@ const EditorDisplay = () => {
       </div>
 
       <div className="flex gap-8">
-        <div className="flex flex-col gap-4">
+        <div className="flex w-[27%] flex-col gap-8">
           <AboutMe />
           <PersonalDetail />
         </div>
 
-        <div className="flex flex-1 flex-col gap-4 pt-1">
+        <div className="flex flex-1 flex-col gap-8 pt-1">
           <ExperienceReorderedList />
           <EducationReorderedList />
           <SkillReorderedGrid />

@@ -33,7 +33,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     useAutosizeTextArea(innerRef.current, props?.value?.toString() || "");
     return (
       <textarea
-        contentEditable
+        spellCheck
         className={cn(
           "flex w-full resize-none overflow-hidden rounded-sm bg-background p-2 text-sm placeholder:text-black hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
           isTitle && "text-primary placeholder:text-primary",

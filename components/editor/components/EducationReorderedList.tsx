@@ -1,20 +1,20 @@
+import ContentEditable from "@/components/ContentEditable";
 import DottedLineBox from "@/components/DottedLineBox";
 import ReorderListControl from "@/components/ReorderListControl";
 import ReorderedList from "@/components/ReorderedList";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { EditorResume } from "@/lib/types/editor/EditorResume";
 import { cn, generateRandomId } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 import { memo } from "react";
 import {
   Controller,
   FormProvider,
   useFieldArray,
-  useForm,
   useFormContext,
 } from "react-hook-form";
 import { useEditor } from "../editorContext";
-import { useTranslations } from "next-intl";
-import ContentEditable from "@/components/ContentEditable";
 
 const EducationReorderedList = () => {
   const { sectionConfig } = useEditor();
@@ -35,7 +35,7 @@ const EducationReorderedList = () => {
       <div>
         <Input
           placeholder={t("title")}
-          className="px-2"
+          className="mb-2 px-2"
           isTitle
           {...register("education.title")}
         />
@@ -48,7 +48,7 @@ const EducationReorderedList = () => {
             return (
               <DottedLineBox
                 className={cn(
-                  "group relative flex cursor-auto flex-col gap-1 bg-white pl-8",
+                  "group relative flex cursor-auto flex-col gap-2 bg-white pl-8",
                   isActive && "z-20 shadow-xl",
                 )}
               >
@@ -80,10 +80,9 @@ const EducationReorderedList = () => {
                   {...register(`education.records.${index}.school`)}
                 />
                 <div className="flex">
-                  <Input
+                  <Textarea
                     placeholder={t("degree")}
-                    className="font-medium"
-                    isTitle
+                    className="h-6 py-0 text-base font-medium leading-5"
                     {...register(`education.records.${index}.degree`)}
                   />
 
@@ -96,7 +95,7 @@ const EducationReorderedList = () => {
                           innerRef={field.ref}
                           onChange={field.onChange}
                           placeholder={t("from-until")}
-                          className="font-light"
+                          className="h-auto self-start font-light"
                           noNewLine
                         />
                       );
