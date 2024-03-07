@@ -20,7 +20,7 @@ const ContentEditable = ({
 }) => {
   return (
     <ReactContentEditable
-      spellCheck
+      spellCheck={true}
       {...props}
       html={html}
       onChange={(event) => {

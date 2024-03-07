@@ -39,36 +39,39 @@ const defaultSectionConfig: EditorSectionConfig = {
 
 const defaultResume: EditorResume = {
   photo: "",
-  name: "",
-  role: "",
+  name: "YUEN Sing Chun (Calvin)",
+  role: "Frontend Developer",
   aboutMe: {
     title: "",
-    value: "",
+    value:
+      "Mid-level Frontend Developer with experience in building web and mobile app using React, React Native, and Typescript. A team player with a strong ability to collaborate with cross-functional teams and effectively communicate technical concepts. Currently seeking opportunity in Japan to further contribute and grow.",
   },
   personalDetails: {
     title: "",
-    location: "",
-    phone: "",
-    email: "",
-    website: "",
-    linkedin: "",
+    location: "Hong Kong",
+    phone: "(852) 5168 7161",
+    email: "scyuenab@gmail.com",
+    website: "https://portfolio-calvin-yuen.vercel.app/works",
+    linkedin: "https://www.linkedin.com/in/sing-chun-yuen-423a09185/",
   },
   workExperiences: {
     title: "",
     records: [
       {
-        id: generateRandomId(),
-        description: "",
+        id: "id_1709620409671",
+        description:
+          '- Actively engaged in the development of numerous features for the mobile app "A.Life" by React Native\n- Developed and implemented multiple features for the "HUMA by AXA" mobile app using React Native.\n- Build the CMS of the "A.Life" and "HUMA by AXA" by Next.js',
         duration: "",
-        position: "",
-        title: "",
+        position: "FRONTEND ENGINEER",
+        title: "App Bar",
       },
       {
-        id: generateRandomId(),
-        description: "",
+        id: "id_1709620409671",
+        description:
+          '- Build the tenant management website of Airside from scratch\n- Develop plenty of features for the school management console named "Compus"',
         duration: "",
-        position: "",
-        title: "",
+        position: "WEB DEVELOPER",
+        title: "Talkbox Limited",
       },
     ],
   },
@@ -76,26 +79,56 @@ const defaultResume: EditorResume = {
     title: "",
     records: [
       {
-        id: generateRandomId(),
-        school: "",
-        degree: "",
-        duration: "",
-      },
-      {
-        id: generateRandomId(),
-        school: "",
-        degree: "",
-        duration: "",
+        id: "id_1709620409671",
+        school: "The Hong Kong University of Science and Technology",
+        degree:
+          "BACHELOR OF ENGINEERING IN ELECTRONIC ENGINEERING WITH  FIRST CLASS HONOR",
+        duration: "2017-2021",
       },
     ],
   },
   skills: {
     title: "",
-    records: [{ title: "" }],
+    records: [
+      {
+        title: "React Native",
+      },
+      {
+        title: "React",
+      },
+      {
+        title: "Typesciprt",
+      },
+      {
+        title: "Next.js",
+      },
+      {
+        title: "Redux",
+      },
+      {
+        title: "Git",
+      },
+      {
+        title: "AWS Solution Architect",
+      },
+    ],
   },
   languages: {
     title: "",
-    records: [{ title: "" }],
+    records: [
+      {
+        title: "English",
+      },
+      {
+        title: "Mandarin",
+      },
+      {
+        title: "Cantonese (Native)",
+      },
+      {
+        title: "Japanese (JLPT N3)",
+      },
+    ],
   },
 };
 
@@ -131,6 +164,8 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     "editor-resume",
     defaultResume,
   );
+
+  console.log(editorResume);
 
   const form = useForm<EditorResume>({
     defaultValues: editorResume,
