@@ -95,6 +95,10 @@ const switchSections = [
         label: "Education",
       },
       {
+        key: "certification",
+        label: "Certification",
+      },
+      {
         key: "skills",
         label: "Skills",
       },

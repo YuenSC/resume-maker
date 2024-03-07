@@ -12,6 +12,7 @@ import SkillReorderedGrid from "./components/SkillReorderedGrid";
 import { AvailableFonts } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import LanguageReorderedGrid from "./components/LanguageReorderedGrid";
+import CertificationTextSection from "./components/CertificationTextSection";
 
 const EditorDisplay = () => {
   const { editorRef, sectionConfig, typography } = useEditor();
@@ -42,6 +43,7 @@ const EditorDisplay = () => {
         <div className="flex flex-1 flex-col gap-8 pt-1">
           <ExperienceReorderedList />
           <EducationReorderedList />
+          <CertificationTextSection />
           <SkillReorderedGrid />
           <LanguageReorderedGrid />
         </div>

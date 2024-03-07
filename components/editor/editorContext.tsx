@@ -27,6 +27,7 @@ const defaultSectionConfig: EditorSectionConfig = {
   photo: true,
   aboutMe: true,
   role: true,
+  certification: true,
   workExperience: true,
   education: true,
   skills: true,
@@ -58,7 +59,7 @@ const defaultResume: EditorResume = {
         id: "id_1709620409671",
         description:
           '- Actively engaged in the development of numerous features for the mobile app "A.Life" by React Native\n- Developed and implemented multiple features for the "HUMA by AXA" mobile app using React Native.\n- Build the CMS of the "A.Life" and "HUMA by AXA" by Next.js',
-        duration: "",
+        duration: "2022-2024",
         position: "FRONTEND ENGINEER",
         title: "App Bar",
       },
@@ -66,7 +67,7 @@ const defaultResume: EditorResume = {
         id: "id_1709620409671",
         description:
           '- Build the tenant management website of Airside from scratch\n- Develop plenty of features for the school management console named "Compus"',
-        duration: "",
+        duration: "2021-2022",
         position: "WEB DEVELOPER",
         title: "Talkbox Limited",
       },
@@ -83,6 +84,10 @@ const defaultResume: EditorResume = {
         duration: "2017-2021",
       },
     ],
+  },
+  certification: {
+    title: "",
+    value: "",
   },
   skills: {
     title: "",

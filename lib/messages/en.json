@@ -1,4 +1,8 @@
 {
+  "certification": {
+    "certification": "CERTIFICATION",
+    "enter-your-certification": "Enter your certification"
+  },
   "control": {
     "languages": "Languages",
     "print": "Print",

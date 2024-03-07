@@ -10,4 +10,5 @@ export type EditorSectionConfig = {
   skills: boolean;
   languages: boolean;
   hobbies: boolean;
+  certification: boolean;
 };
