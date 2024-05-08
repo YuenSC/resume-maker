@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import AboutMe from "./components/AboutMe";
+import TextSection from "./components/TextSection";
 import ExperienceReorderedList from "./components/ExperienceReorderedList";
 import NameInput from "./components/NameInput";
 import PersonalDetail from "./components/PersonalDetail";
@@ -13,9 +13,12 @@ import { AvailableFonts } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import LanguageReorderedGrid from "./components/LanguageReorderedGrid";
 import CertificationTextSection from "./components/CertificationTextSection";
+import { useTranslations } from "next-intl";
 
 const EditorDisplay = () => {
   const { editorRef, sectionConfig, typography } = useEditor();
+
+  const t = useTranslations("editor");
 
   const currentFont = AvailableFonts.find(
     (item) => item.variable === typography,
@@ -36,8 +39,28 @@ const EditorDisplay = () => {
 
       <div className="flex gap-8">
         <div className="flex w-[28%] flex-col gap-8">
-          <AboutMe />
+          <TextSection
+            titlePlaceholder={t("about-me")}
+            valuePlaceholder={t("enter-your-professional-summary")}
+            titleFieldName="aboutMe.title"
+            valueFieldName="aboutMe.value"
+            sectionConfigKey="aboutMe"
+          />
           <PersonalDetail />
+          <TextSection
+            titlePlaceholder={t("custom-1")}
+            valuePlaceholder={t("enter-your-detail")}
+            titleFieldName="customLeftColumn1.title"
+            valueFieldName="customLeftColumn1.value"
+            sectionConfigKey="customLeftColumn1"
+          />
+          <TextSection
+            titlePlaceholder={t("custom-2")}
+            valuePlaceholder={t("enter-your-detail")}
+            titleFieldName="customLeftColumn2.title"
+            valueFieldName="customLeftColumn2.value"
+            sectionConfigKey="customLeftColumn2"
+          />
         </div>
 
         <div className="flex flex-1 flex-col gap-8 pt-1">

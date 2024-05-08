@@ -48,4 +48,12 @@ export type EditorResume = {
     title: string;
     records: { title: string }[];
   };
+  customLeftColumn1: {
+    title: string;
+    value: string;
+  };
+  customLeftColumn2: {
+    title: string;
+    value: string;
+  };
 };

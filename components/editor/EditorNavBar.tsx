@@ -69,6 +69,18 @@ const switchSections = [
         key: "personalDetails.linkedin",
         label: "Linkedin",
       },
+      {
+        key: "personalDetails.linkedin",
+        label: "Linkedin",
+      },
+      {
+        key: "customLeftColumn1",
+        label: "Custom 1",
+      },
+      {
+        key: "customLeftColumn2",
+        label: "Custom 2",
+      },
     ],
   },
   {

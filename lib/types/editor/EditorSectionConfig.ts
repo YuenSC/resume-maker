@@ -11,4 +11,6 @@ export type EditorSectionConfig = {
   languages: boolean;
   hobbies: boolean;
   certification: boolean;
+  customLeftColumn1: boolean;
+  customLeftColumn2: boolean;
 };

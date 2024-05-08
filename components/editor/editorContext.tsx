@@ -34,6 +34,8 @@ const emptySectionConfig: EditorSectionConfig = {
   skills: true,
   languages: false,
   hobbies: false,
+  customLeftColumn1: false,
+  customLeftColumn2: false,
 };
 
 const defaultSectionConfig: EditorSectionConfig = {
@@ -53,6 +55,8 @@ const defaultSectionConfig: EditorSectionConfig = {
   skills: true,
   languages: false,
   hobbies: false,
+  customLeftColumn1: false,
+  customLeftColumn2: false,
 };
 
 const defaultResume: EditorResume = {
@@ -153,6 +157,14 @@ const defaultResume: EditorResume = {
     value:
       "- AWS Certified Solution Architect - Associate (2023 JAN)<div>- JLPT N3 (2021 JUL)</div>",
   },
+  customLeftColumn1: {
+    title: "",
+    value: "",
+  },
+  customLeftColumn2: {
+    title: "",
+    value: "",
+  },
 };
 
 const emptyResume: EditorResume = {
@@ -210,6 +222,14 @@ const emptyResume: EditorResume = {
     records: [{ title: "" }],
   },
   certification: {
+    title: "",
+    value: "",
+  },
+  customLeftColumn1: {
+    title: "",
+    value: "",
+  },
+  customLeftColumn2: {
     title: "",
     value: "",
   },
