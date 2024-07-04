@@ -133,6 +133,9 @@ const defaultResume: EditorResume = {
       {
         title: "AWS Solution Architect",
       },
+      {
+        title: "NestJS",
+      },
     ],
   },
   languages: {
