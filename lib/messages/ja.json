@@ -1,5 +1,10 @@
 {
+  "certification": {
+    "certification": "認証",
+    "enter-your-certification": "認定資格を入力してください"
+  },
   "control": {
+    "check-resume-template": "著者テンプレートを確認する",
     "languages": "言語",
     "print": "印刷する",
     "reset": "リセット",

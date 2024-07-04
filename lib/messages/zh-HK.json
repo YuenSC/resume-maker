@@ -1,5 +1,10 @@
 {
+  "certification": {
+    "certification": "認證",
+    "enter-your-certification": "輸入您的認證"
+  },
   "control": {
+    "check-resume-template": "檢查作者模板",
     "languages": "語言",
     "print": "列印",
     "reset": "重置",
