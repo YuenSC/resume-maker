@@ -66,7 +66,7 @@ const defaultResume: EditorResume = {
   aboutMe: {
     title: "",
     value:
-      "Mid-level Frontend Developer with experience in building web and mobile app using React, React Native, and Typescript. A team player with a strong ability to collaborate with cross-functional teams and effectively communicate technical concepts. Currently seeking opportunity in Japan to further contribute and grow.",
+      "Frontend Developer with 2 years of experience in building web and mobile app using React, React Native, and Typescript. A team player with a strong ability to collaborate with cross-functional teams and effectively communicate technical concepts. Currently seeking opportunity in Japan to further contribute and grow.",
   },
   personalDetails: {
     title: "",
