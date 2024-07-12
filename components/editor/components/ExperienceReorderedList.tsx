@@ -90,7 +90,7 @@ const ExperienceReorderedList = () => {
                   />
 
                   <Controller
-                    name={`records.${index}.duration`}
+                    name={`workExperiences.records.${index}.duration`}
                     render={({ field }) => {
                       return (
                         <ContentEditable

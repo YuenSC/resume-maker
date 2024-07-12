@@ -83,15 +83,15 @@ const defaultResume: EditorResume = {
         id: "id_1709620409671",
         description:
           '- Actively engaged in the development of numerous features for the mobile app "A.Life" by React Native\n- Developed and implemented multiple features for the "HUMA by AXA" mobile app using React Native.\n- Build the CMS of the "A.Life" and "HUMA by AXA" by Next.js',
-        duration: "",
+        duration: "Oct 2022 - Jan 2024",
         position: "FRONTEND ENGINEER",
         title: "App Bar",
       },
       {
         id: "id_1709620409671",
         description:
-          '- Build the tenant management website of Airside from scratch\n- Develop plenty of features for the school management console named "Compus"',
-        duration: "",
+          '- Built the tenant management website of Airside from scratch, ranging from project bootstrap to every specific features like e-directory, tenant service applications and so on.\n- Developed plenty of features for the school management console named "Compus"',
+        duration: "Aug 2021 - Aug 2022",
         position: "WEB DEVELOPER",
         title: "Talkbox Limited",
       },
