@@ -158,7 +158,7 @@ const defaultResume: EditorResume = {
   certification: {
     title: "",
     value:
-      "- AWS Certified Solution Architect - Associate (2023 JAN)<div>- JLPT N3 (2021 JUL)</div>",
+      "- AWS Certified Solution Architect - Associate (2024 JAN)<div>- JLPT N3 (2021 JUL)</div>",
   },
   customLeftColumn1: {
     title: "",
